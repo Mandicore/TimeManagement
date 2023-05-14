@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
@@ -143,31 +144,56 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             SignIn.MaximumSize = new System.Drawing.Size(500, 500);
             SignIn.MinimumSize = new System.Drawing.Size(500, 500);
 
-            Image imageOriginale = Image.FromFile("img/add.png"); // Charger l'image originale
+            Image imageOriginale = Image.FromFile("img/add.png"); 
 
-            int nouvelleLargeur = 100; // Spécifier la nouvelle largeur souhaitée
-            int nouvelleHauteur = 100; // Spécifier la nouvelle hauteur souhaitée
+            int nouvelleLargeur = 100; 
+            int nouvelleHauteur = 100; 
 
             Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
 
             PictureBox pictureBox1 = new PictureBox();
-            pictureBox1.Location = new Point(185, 50);
+            pictureBox1.Location = new Point(185, 30);
             pictureBox1.Size = new Size(100, 100);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste la taille de l'image au PictureBox
-            pictureBox1.Image = imageReduite; // Chargement depuis un fichier
-            SignIn.Controls.Add(pictureBox1);                                              // pictureBox1.Image = Properties.Resources.votre_image; // Chargement depuis une ressource
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = imageReduite;
+            SignIn.Controls.Add(pictureBox1);  
 
-            Label nameTitle = FormLabel("Nom :", 140);
+            Label nameTitle = FormLabel("Nom :", 120);
             SignIn.Controls.Add(nameTitle);
 
-            System.Windows.Forms.TextBox name = TextField(70, 190);
+            System.Windows.Forms.TextBox name = TextField(70, 170);
             SignIn.Controls.Add(name);
 
-            Label firstNameLabel = FormLabel("Prénom :", 220);
+            Label firstNameLabel = FormLabel("Prénom :", 200);
             SignIn.Controls.Add(firstNameLabel);
 
-            System.Windows.Forms.TextBox firstName = TextField(70, 270);
+            System.Windows.Forms.TextBox firstName = TextField(70, 250);
             SignIn.Controls.Add(firstName);
+
+
+            System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
+            radioButton1.Text = "Homme";
+            radioButton1.ForeColor = Color.FromArgb(166, 154, 121);
+            radioButton1.Location = new System.Drawing.Point(20, 20);
+            SignIn.Controls.Add(radioButton1);
+
+            System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
+            radioButton2.Text = "Femme";
+            radioButton2.ForeColor = Color.FromArgb(166, 154, 121);
+            radioButton2.Location = new System.Drawing.Point(180, 20);
+            SignIn.Controls.Add(radioButton2);
+
+
+            var groupBox = new System.Windows.Forms.GroupBox();
+            groupBox.Location = new System.Drawing.Point(70, 300);
+            groupBox.Text = "Genre";
+            groupBox.ForeColor = Color.FromArgb(166, 154, 121);
+            groupBox.Size = new Size(350, 60);
+            groupBox.Controls.Add(radioButton1);
+            groupBox.Controls.Add(radioButton2);
+            SignIn.Controls.Add(groupBox);
+
+
 
             return SignIn;
 
