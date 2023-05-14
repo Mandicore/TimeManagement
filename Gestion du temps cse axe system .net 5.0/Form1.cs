@@ -67,7 +67,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                         panel.Controls.Add(buttonPersonne);
                     }
 
-                    Button add = Styles.CreateButtonAdd(foreground, Color.Gray, "Ajouter ...");
+                    Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
                     add.Click += new EventHandler(add_Click);
                     panel.Controls.Add(add);
                     panelOpen = true;
@@ -89,9 +89,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             Form signIn = Styles.NewUserForm(background);
             signIn.Show();
-            
-            
-            
+
+
+
             /*Personnes Jossua = new Personnes("FIGUEIRAS", "Jossua", true);
             personnes.Add(Jossua);
             ImportJsonFromFile.Send(personnes);*/

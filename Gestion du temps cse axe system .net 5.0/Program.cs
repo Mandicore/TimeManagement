@@ -115,7 +115,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
             textBox.Location = new System.Drawing.Point(locationX, locationY);
-            textBox.Size = new System.Drawing.Size(200, 20);
+            textBox.Size = new System.Drawing.Size(350, 100);
+            textBox.Font = new Font(textBox.Font.FontFamily, 15, textBox.Font.Style);
 
             return textBox;
         }
@@ -127,6 +128,28 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             SignIn.BackColor = background;
             SignIn.MaximumSize = new System.Drawing.Size(500, 500);
             SignIn.MinimumSize = new System.Drawing.Size(500, 500);
+
+            Image imageOriginale = Image.FromFile("img/add.png"); // Charger l'image originale
+
+            int nouvelleLargeur = 100; // Spécifier la nouvelle largeur souhaitée
+            int nouvelleHauteur = 100; // Spécifier la nouvelle hauteur souhaitée
+
+            Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
+
+            PictureBox pictureBox1 = new PictureBox();
+            pictureBox1.Location = new Point(185, 50);
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste la taille de l'image au PictureBox
+            pictureBox1.Image = imageReduite; // Chargement depuis un fichier
+            SignIn.Controls.Add(pictureBox1);                                              // pictureBox1.Image = Properties.Resources.votre_image; // Chargement depuis une ressource
+
+
+            System.Windows.Forms.TextBox name = TextField(70, 200);
+            SignIn.Controls.Add(name);
+
+            System.Windows.Forms.TextBox firstName = TextField(70, 300);
+            SignIn.Controls.Add(firstName);
+
             return SignIn;
 
         }
