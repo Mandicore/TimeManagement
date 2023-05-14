@@ -54,6 +54,20 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return label;
         }
+        public static Label FormLabel (string text, int locationY)
+        {
+            Label label = new Label();
+            label.Text = text;
+            label.Size = new Size(80, 50);
+            label.BackColor = Color.FromArgb(24, 30, 42);
+            label.ForeColor = Color.FromArgb(166, 154, 121);
+            label.Font = new Font("Arial", 12, FontStyle.Italic);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Location = new Point(60, locationY);
+            label.Anchor = AnchorStyles.None;
+
+            return label;
+        }
         public static System.Windows.Forms.Button CreateButton(Color backColor, Color foreColor)
         {
             System.Windows.Forms.Button button = new System.Windows.Forms.Button();
@@ -143,11 +157,16 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.Image = imageReduite; // Chargement depuis un fichier
             SignIn.Controls.Add(pictureBox1);                                              // pictureBox1.Image = Properties.Resources.votre_image; // Chargement depuis une ressource
 
+            Label nameTitle = FormLabel("Nom :", 140);
+            SignIn.Controls.Add(nameTitle);
 
-            System.Windows.Forms.TextBox name = TextField(70, 200);
+            System.Windows.Forms.TextBox name = TextField(70, 190);
             SignIn.Controls.Add(name);
 
-            System.Windows.Forms.TextBox firstName = TextField(70, 300);
+            Label firstNameLabel = FormLabel("Prénom :", 220);
+            SignIn.Controls.Add(firstNameLabel);
+
+            System.Windows.Forms.TextBox firstName = TextField(70, 270);
             SignIn.Controls.Add(firstName);
 
             return SignIn;
