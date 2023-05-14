@@ -87,9 +87,14 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         private void add_Click(object sender, EventArgs e)
         {
-            Personnes Jossua = new Personnes("FIGUEIRAS", "Jossua", true);
+            Form signIn = Styles.NewUserForm(background);
+            signIn.Show();
+            
+            
+            
+            /*Personnes Jossua = new Personnes("FIGUEIRAS", "Jossua", true);
             personnes.Add(Jossua);
-            ImportJsonFromFile.Send(personnes);
+            ImportJsonFromFile.Send(personnes);*/
         }
         private void Form1_Load(object sender, EventArgs e)
         {

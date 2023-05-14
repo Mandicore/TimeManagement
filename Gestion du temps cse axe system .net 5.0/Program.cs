@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
@@ -52,9 +54,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return label;
         }
-        public static Button CreateButton(Color backColor, Color foreColor)
+        public static System.Windows.Forms.Button CreateButton(Color backColor, Color foreColor)
         {
-            Button button = new Button();
+            System.Windows.Forms.Button button = new System.Windows.Forms.Button();
             button.Text = "\u2630";
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
@@ -68,9 +70,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
-        public static Button CreateButtonMenu(Color backColor, Color foreColor, string text)
+        public static System.Windows.Forms.Button CreateButtonMenu(Color backColor, Color foreColor, string text)
         {
-            Button button = new Button();
+            System.Windows.Forms.Button button = new System.Windows.Forms.Button();
             button.Text = text;
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
@@ -84,9 +86,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
-        public static Button CreateButtonAdd(Color backColor, Color foreColor, string text)
+        public static System.Windows.Forms.Button CreateButtonAdd(Color backColor, Color foreColor, string text)
         {
-            Button button = new Button();
+            System.Windows.Forms.Button button = new System.Windows.Forms.Button();
             button.Text = text;
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
@@ -107,6 +109,25 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             string dayOfMonth = now.ToString("dd");
             string month = now.ToString("MMMM", new CultureInfo("fr-FR"));
             return $"{dayOfWeek} {dayOfMonth} {month}";
+
+        }
+        public static System.Windows.Forms.TextBox TextField(int locationX, int locationY)
+        {
+            System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+            textBox.Location = new System.Drawing.Point(locationX, locationY);
+            textBox.Size = new System.Drawing.Size(200, 20);
+
+            return textBox;
+        }
+        public static Form NewUserForm(Color background)
+        {
+            Form SignIn = new Form();
+            SignIn.Size = new System.Drawing.Size(500, 500);
+            SignIn.StartPosition = FormStartPosition.CenterScreen;
+            SignIn.BackColor = background;
+            SignIn.MaximumSize = new System.Drawing.Size(500, 500);
+            SignIn.MinimumSize = new System.Drawing.Size(500, 500);
+            return SignIn;
 
         }
 
