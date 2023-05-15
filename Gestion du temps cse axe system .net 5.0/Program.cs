@@ -211,13 +211,13 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
 
             System.Windows.Forms.Button newUser = CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
+            SignIn.Click += new EventHandler(NewPersonne_Click);
             SignIn.Controls.Add(newUser);
 
 
             return SignIn;
 
         }
-
     }
     public static class ScreenSetings
     {
