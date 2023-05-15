@@ -117,6 +117,22 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
+        public static System.Windows.Forms.Button CreateButtonNewUser(Color backColor, Color foreColor, int LocationX, int LocationY, string text)
+        {
+            System.Windows.Forms.Button button = new System.Windows.Forms.Button();
+            button.Text = text;
+            button.TextAlign = ContentAlignment.MiddleCenter;
+            button.BackColor = backColor;
+            button.ForeColor = foreColor;
+            button.Font = new Font("Arial", 10, FontStyle.Bold);
+            button.Size = new Size(100, 30);
+            button.Location = new Point(LocationX, LocationY);
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderColor = Color.Black;
+            button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);
+            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
+            return button;
+        }
         public static string GetDate()
         {
             DateTime now = DateTime.Now;
@@ -193,6 +209,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             groupBox.Controls.Add(radioButton2);
             SignIn.Controls.Add(groupBox);
 
+
+            System.Windows.Forms.Button newUser = CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
+            SignIn.Controls.Add(newUser);
 
 
             return SignIn;
