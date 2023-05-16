@@ -153,12 +153,12 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         public static Form NewUserForm(Color background)
         {
-            Form SignIn = new Form();
-            SignIn.Size = new System.Drawing.Size(500, 500);
-            SignIn.StartPosition = FormStartPosition.CenterScreen;
-            SignIn.BackColor = background;
-            SignIn.MaximumSize = new System.Drawing.Size(500, 500);
-            SignIn.MinimumSize = new System.Drawing.Size(500, 500);
+            Form signIn = new Form();
+            signIn.Size = new System.Drawing.Size(500, 500);
+            signIn.StartPosition = FormStartPosition.CenterScreen;
+            signIn.BackColor = background;
+            signIn.MaximumSize = new System.Drawing.Size(500, 500);
+            signIn.MinimumSize = new System.Drawing.Size(500, 500);
 
             Image imageOriginale = Image.FromFile("img/add.png"); 
 
@@ -172,32 +172,32 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.Size = new Size(100, 100);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.Image = imageReduite;
-            SignIn.Controls.Add(pictureBox1);  
+            signIn.Controls.Add(pictureBox1);  
 
             Label nameTitle = FormLabel("Nom :", 120);
-            SignIn.Controls.Add(nameTitle);
+            signIn.Controls.Add(nameTitle);
 
             System.Windows.Forms.TextBox name = TextField(70, 170);
-            SignIn.Controls.Add(name);
+            signIn.Controls.Add(name);
 
             Label firstNameLabel = FormLabel("Prénom :", 200);
-            SignIn.Controls.Add(firstNameLabel);
+            signIn.Controls.Add(firstNameLabel);
 
             System.Windows.Forms.TextBox firstName = TextField(70, 250);
-            SignIn.Controls.Add(firstName);
-
+            signIn.Controls.Add(firstName);
+                
 
             System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
             radioButton1.Text = "Homme";
             radioButton1.ForeColor = Color.FromArgb(166, 154, 121);
             radioButton1.Location = new System.Drawing.Point(20, 20);
-            SignIn.Controls.Add(radioButton1);
+            signIn.Controls.Add(radioButton1);
 
             System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
             radioButton2.Text = "Femme";
             radioButton2.ForeColor = Color.FromArgb(166, 154, 121);
             radioButton2.Location = new System.Drawing.Point(180, 20);
-            SignIn.Controls.Add(radioButton2);
+            signIn.Controls.Add(radioButton2);
 
 
             var groupBox = new System.Windows.Forms.GroupBox();
@@ -207,16 +207,67 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             groupBox.Size = new Size(350, 60);
             groupBox.Controls.Add(radioButton1);
             groupBox.Controls.Add(radioButton2);
-            SignIn.Controls.Add(groupBox);
+            signIn.Controls.Add(groupBox);
 
-
+            /*
             System.Windows.Forms.Button newUser = CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
             SignIn.Click += new EventHandler(NewPersonne_Click);
             SignIn.Controls.Add(newUser);
+            */
+
+            return signIn;
+
+        }
+        public static void ItemsAddUser(Form signIn, System.Windows.Forms.TextBox name, System.Windows.Forms.TextBox firstName)
+        {
+            Image imageOriginale = Image.FromFile("img/add.png");
+
+            int nouvelleLargeur = 100;
+            int nouvelleHauteur = 100;
+
+            Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
+
+            PictureBox pictureBox1 = new PictureBox();
+            pictureBox1.Location = new Point(185, 30);
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = imageReduite;
+            signIn.Controls.Add(pictureBox1);
+
+            Label nameTitle = FormLabel("Nom :", 120);
+            signIn.Controls.Add(nameTitle);
+
+            name = TextField(70, 170);
+            signIn.Controls.Add(name);
+
+            Label firstNameLabel = FormLabel("Prénom :", 200);
+            signIn.Controls.Add(firstNameLabel);
+
+            firstName = TextField(70, 250);
+            signIn.Controls.Add(firstName);
 
 
-            return SignIn;
+            System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
+            radioButton1.Text = "Homme";
+            radioButton1.ForeColor = Color.FromArgb(166, 154, 121);
+            radioButton1.Location = new System.Drawing.Point(20, 20);
+            signIn.Controls.Add(radioButton1);
 
+            System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
+            radioButton2.Text = "Femme";
+            radioButton2.ForeColor = Color.FromArgb(166, 154, 121);
+            radioButton2.Location = new System.Drawing.Point(180, 20);
+            signIn.Controls.Add(radioButton2);
+
+
+            var groupBox = new System.Windows.Forms.GroupBox();
+            groupBox.Location = new System.Drawing.Point(70, 300);
+            groupBox.Text = "Genre";
+            groupBox.ForeColor = Color.FromArgb(166, 154, 121);
+            groupBox.Size = new Size(350, 60);
+            groupBox.Controls.Add(radioButton1);
+            groupBox.Controls.Add(radioButton2);
+            signIn.Controls.Add(groupBox);
         }
     }
     public static class ScreenSetings

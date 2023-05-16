@@ -20,6 +20,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private Panel panel = new Panel();
         private Button burgerButton = new Button();
 
+        private TextBox name;
+        private TextBox firstName;
+
         public List<Personnes> personnes = new List<Personnes>();
         public Form1()
         {
@@ -88,21 +91,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private void add_Click(object sender, EventArgs e)
         {
             Form signIn = Styles.NewUserForm(background);
-
+            Styles.ItemsAddUser(signIn, name, firstName);
+            Button newUser = Styles.CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
+            signIn.Click += new EventHandler(NewPersonne_Click);
+            signIn.Controls.Add(newUser);
             signIn.Show();
 
 
 
         }
-        /*ici*/
+
         private void NewPersonne_Click(object sender, EventArgs e)
         {
-            Form signIn = Styles.NewUserForm(background);
-
-            signIn.Show();
-
-
-
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
