@@ -92,11 +92,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
-            button.Font = new Font("Arial", 30, FontStyle.Bold);
-            button.Size = new Size(100, 75);
-            button.Location = new Point(15, 15);
+            button.Font = new Font("Arial", 18, FontStyle.Bold);
+            button.Size = new Size(250, 80);
+            button.Location = new Point(20, 100);
             button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderColor = backColor; ;
+            button.FlatAppearance.BorderColor = Color.Black;
             button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;

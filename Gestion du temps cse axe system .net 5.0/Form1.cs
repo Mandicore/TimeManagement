@@ -1,15 +1,8 @@
 ﻿using projet_gestion_temps_cse_axe_system;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
@@ -65,10 +58,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
                 if (personnes != null)
                 {
+                    int interval = 100;
                     foreach (Personnes personne in personnes)
                     {
-                        Button buttonPersonne = Styles.CreateButtonMenu(Color.Gray, foreground, personne.name);
+
+                        string nameOnButton = personne.name + "\n" + personne.firstName;
+                        Button buttonPersonne = Styles.CreateButtonMenu(Color.Gray, foreground, nameOnButton);
+                        buttonPersonne.Location = new Point(20, interval);
                         panel.Controls.Add(buttonPersonne);
+                        interval += 90;
                     }
 
                     Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
@@ -148,8 +146,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Inscrit avec succès");
                 }
-
-                // ...
 
             }
             else
