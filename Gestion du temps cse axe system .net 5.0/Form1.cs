@@ -20,8 +20,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private Panel panel = new Panel();
         private Button burgerButton = new Button();
 
-        private TextBox name;
-        private TextBox firstName;
+        public TextBox name = new TextBox();
+        public TextBox firstName = new TextBox();
 
         public List<Personnes> personnes = new List<Personnes>();
         public Form1()
@@ -60,8 +60,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 burgerButton.FlatAppearance.BorderColor = Color.Gray;
                 burgerButton.ForeColor = Color.Black;
 
-                //personnes = GetListPersonnes.GetListPersonneFromJson();
-
                 if (personnes != null)
                 {
                     foreach (Personnes personne in personnes)
@@ -92,17 +90,38 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             Form signIn = Styles.NewUserForm(background);
             Styles.ItemsAddUser(signIn, name, firstName);
+
+            Label nameTitle = Styles.FormLabel("Nom :", 120);
+            signIn.Controls.Add(nameTitle);
+
+            name = Styles.TextField(70, 170);
+            signIn.Controls.Add(name);
+
+            Label firstNameLabel = Styles.FormLabel("Prénom :", 200);
+            signIn.Controls.Add(firstNameLabel);
+
+            firstName = Styles.TextField(70, 250);
+            signIn.Controls.Add(firstName);
+
             Button newUser = Styles.CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
-            signIn.Click += new EventHandler(NewPersonne_Click);
+            newUser.Click += new EventHandler(NewPersonne_Click);
             signIn.Controls.Add(newUser);
             signIn.Show();
-
-
 
         }
 
         private void NewPersonne_Click(object sender, EventArgs e)
         {
+            if ((!String.IsNullOrEmpty(name.Text))&&(!String.IsNullOrEmpty(firstName.Text)))
+            {
+                string nameLog = name.Text;
+                string firstNameLog = firstName.Text;
+                
+            }
+            else
+            {
+                MessageBox.Show("hors du if !");
+            }
             
         }
         private void Form1_Load(object sender, EventArgs e)

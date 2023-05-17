@@ -160,61 +160,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             signIn.MaximumSize = new System.Drawing.Size(500, 500);
             signIn.MinimumSize = new System.Drawing.Size(500, 500);
 
-            Image imageOriginale = Image.FromFile("img/add.png"); 
-
-            int nouvelleLargeur = 100; 
-            int nouvelleHauteur = 100; 
-
-            Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
-
-            PictureBox pictureBox1 = new PictureBox();
-            pictureBox1.Location = new Point(185, 30);
-            pictureBox1.Size = new Size(100, 100);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.Image = imageReduite;
-            signIn.Controls.Add(pictureBox1);  
-
-            Label nameTitle = FormLabel("Nom :", 120);
-            signIn.Controls.Add(nameTitle);
-
-            System.Windows.Forms.TextBox name = TextField(70, 170);
-            signIn.Controls.Add(name);
-
-            Label firstNameLabel = FormLabel("Prénom :", 200);
-            signIn.Controls.Add(firstNameLabel);
-
-            System.Windows.Forms.TextBox firstName = TextField(70, 250);
-            signIn.Controls.Add(firstName);
-                
-
-            System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
-            radioButton1.Text = "Homme";
-            radioButton1.ForeColor = Color.FromArgb(166, 154, 121);
-            radioButton1.Location = new System.Drawing.Point(20, 20);
-            signIn.Controls.Add(radioButton1);
-
-            System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
-            radioButton2.Text = "Femme";
-            radioButton2.ForeColor = Color.FromArgb(166, 154, 121);
-            radioButton2.Location = new System.Drawing.Point(180, 20);
-            signIn.Controls.Add(radioButton2);
-
-
-            var groupBox = new System.Windows.Forms.GroupBox();
-            groupBox.Location = new System.Drawing.Point(70, 300);
-            groupBox.Text = "Genre";
-            groupBox.ForeColor = Color.FromArgb(166, 154, 121);
-            groupBox.Size = new Size(350, 60);
-            groupBox.Controls.Add(radioButton1);
-            groupBox.Controls.Add(radioButton2);
-            signIn.Controls.Add(groupBox);
-
-            /*
-            System.Windows.Forms.Button newUser = CreateButtonNewUser(Color.FromArgb(166, 154, 121), background, 180, 400, "Ajouter ...");
-            SignIn.Click += new EventHandler(NewPersonne_Click);
-            SignIn.Controls.Add(newUser);
-            */
-
             return signIn;
 
         }
@@ -233,18 +178,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.Image = imageReduite;
             signIn.Controls.Add(pictureBox1);
-
-            Label nameTitle = FormLabel("Nom :", 120);
-            signIn.Controls.Add(nameTitle);
-
-            name = TextField(70, 170);
-            signIn.Controls.Add(name);
-
-            Label firstNameLabel = FormLabel("Prénom :", 200);
-            signIn.Controls.Add(firstNameLabel);
-
-            firstName = TextField(70, 250);
-            signIn.Controls.Add(firstName);
 
 
             System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
@@ -307,6 +240,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             List<Personnes> Personnes = JsonConvert.DeserializeObject<List<Personnes>>(json);
             return Personnes;
+
         }
     }
 }
