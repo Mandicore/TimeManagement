@@ -15,6 +15,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private Panel panel = new Panel();
         private Button burgerButton = new Button();
 
+        private Form signIn;
+
         public TextBox name = new TextBox();
         public TextBox firstName = new TextBox();
 
@@ -45,6 +47,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             burgerButton = Styles.CreateButton(background, foreground);
             burgerButton.Click += new EventHandler(burgerButton_Click);
             this.Controls.Add(burgerButton);
+
+
         }
         private void burgerButton_Click(object sender, EventArgs e)
         {
@@ -55,6 +59,14 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 burgerButton.BackColor = Color.Gray;
                 burgerButton.FlatAppearance.BorderColor = Color.Gray;
                 burgerButton.ForeColor = Color.Black;
+                panel.AutoScroll = false; 
+                VScrollBar scrollBar = new VScrollBar();
+                scrollBar.Dock = DockStyle.Right;
+                scrollBar.Scroll += (sender, e) => {
+                    panel.VerticalScroll.Value = scrollBar.Value;
+                };
+                this.Controls.Add(panel);
+                panel.Controls.Add(scrollBar);
 
                 if (personnes != null)
                 {
@@ -89,7 +101,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         private void add_Click(object sender, EventArgs e)
         {
-            Form signIn = Styles.NewUserForm(background);
+            signIn = Styles.NewUserForm(background);
 
             Label nameTitle = Styles.FormLabel("Nom :", 120);
             signIn.Controls.Add(nameTitle);
@@ -132,19 +144,34 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
                 if (radioButton1.Checked)
                 {
-                    // Le bouton radio 1 est sélectionné
-                    Personnes newUser = new Personnes(nameLog, firstNameLog, true);
+                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, true);
                     personnes.Add(newUser);
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Inscrit avec succès");
+
+                    this.Controls.Remove(panel);
+                    burgerButton.BackColor = background;
+                    burgerButton.FlatAppearance.BorderColor = background;
+                    burgerButton.ForeColor = foreground;
+                    panelOpen = false;
+
+                    signIn.Hide();
+
                 }
                 else if (radioButton2.Checked)
                 {
-                    // Le bouton radio 2 est sélectionné
-                    Personnes newUser = new Personnes(nameLog, firstNameLog, false);
+                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, false);
                     personnes.Add(newUser);
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Inscrit avec succès");
+
+                    this.Controls.Remove(panel);
+                    burgerButton.BackColor = background;
+                    burgerButton.FlatAppearance.BorderColor = background;
+                    burgerButton.ForeColor = foreground;
+                    panelOpen = false;
+
+                    signIn.Hide();
                 }
 
             }
