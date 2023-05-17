@@ -163,7 +163,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             return signIn;
 
         }
-        public static void ItemsAddUser(Form signIn, System.Windows.Forms.TextBox name, System.Windows.Forms.TextBox firstName)
+        public static void ItemsAddUser(Form signIn, System.Windows.Forms.TextBox name, System.Windows.Forms.TextBox firstName, System.Windows.Forms.RadioButton radioButton1, System.Windows.Forms.RadioButton radioButton2, System.Windows.Forms.GroupBox groupBox = null)
         {
             Image imageOriginale = Image.FromFile("img/add.png");
 
@@ -178,29 +178,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.Image = imageReduite;
             signIn.Controls.Add(pictureBox1);
-
-
-            System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
-            radioButton1.Text = "Homme";
-            radioButton1.ForeColor = Color.FromArgb(166, 154, 121);
-            radioButton1.Location = new System.Drawing.Point(20, 20);
-            signIn.Controls.Add(radioButton1);
-
-            System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
-            radioButton2.Text = "Femme";
-            radioButton2.ForeColor = Color.FromArgb(166, 154, 121);
-            radioButton2.Location = new System.Drawing.Point(180, 20);
-            signIn.Controls.Add(radioButton2);
-
-
-            var groupBox = new System.Windows.Forms.GroupBox();
-            groupBox.Location = new System.Drawing.Point(70, 300);
-            groupBox.Text = "Genre";
-            groupBox.ForeColor = Color.FromArgb(166, 154, 121);
-            groupBox.Size = new Size(350, 60);
-            groupBox.Controls.Add(radioButton1);
-            groupBox.Controls.Add(radioButton2);
-            signIn.Controls.Add(groupBox);
         }
     }
     public static class ScreenSetings
