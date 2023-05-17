@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
@@ -54,6 +56,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.Anchor = AnchorStyles.None;
 
             return label;
+        }
+        public static Label panelTitle(Color Foreground, Color background)
+        {
+            Label label = new Label();
+            label.BackColor = background;
+            label.ForeColor = Foreground;
+            label.Size = new Size(150, 40);
+            label.Text = "Personnes";
+            label.Font = new Font("Arial", 17, FontStyle.Bold);
+            label.Location = new Point(70, 80);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            return label;
+
         }
         public static Label FormLabel (string text, int locationY)
         {

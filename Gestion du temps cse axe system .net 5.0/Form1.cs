@@ -72,7 +72,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
                 if (personnes != null)
                 {
-                    int interval = 100;
+                    int interval = 150;
+                    Label panelTitle = Styles.panelTitle(foreground, Color.Gray);
+                    panel.Controls.Add(panelTitle);
                     foreach (Personnes personne in personnes)
                     {
 
