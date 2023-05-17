@@ -8,6 +8,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
     public partial class Form1 : Form
     {
+        int interval = 150;
+
         private Color background = Color.FromArgb(24, 30, 42);
         private Color foreground = Color.FromArgb(166, 154, 121);
 
@@ -59,20 +61,10 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 burgerButton.BackColor = Color.Gray;
                 burgerButton.FlatAppearance.BorderColor = Color.Gray;
                 burgerButton.ForeColor = Color.Black;
-                panel.AutoScroll = true; 
-
-
-                VScrollBar scrollBar = new VScrollBar();
-
-                int totalContentHeight = 0;
-                foreach (Control control in panel.Controls)
-                {
-                    totalContentHeight += control.Height;
-                }
-
+                panel.AutoScroll = true;
                 if (personnes != null)
                 {
-                    int interval = 150;
+                    
                     Label panelTitle = Styles.panelTitle(foreground, Color.Gray);
                     panel.Controls.Add(panelTitle);
                     foreach (Personnes personne in personnes)
@@ -85,12 +77,12 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                         interval += 90;
                     }
 
-                    Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
-                    add.Click += new EventHandler(add_Click);
-                    add.Location = new Point(90, interval + 10);
-                    panel.Controls.Add(add);
-                    panelOpen = true;
                 }
+                Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
+                add.Click += new EventHandler(add_Click);
+                add.Location = new Point(90, interval + 10);
+                panel.Controls.Add(add);
+                panelOpen = true;
 
 
             }
