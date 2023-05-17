@@ -110,7 +110,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.ForeColor = foreColor;
             button.Font = new Font("Arial", 10, FontStyle.Bold);
             button.Size = new Size(100, 30);
-            button.Location = new Point(150, 650);
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Color.Black;
             button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);

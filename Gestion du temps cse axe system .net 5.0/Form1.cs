@@ -59,14 +59,16 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 burgerButton.BackColor = Color.Gray;
                 burgerButton.FlatAppearance.BorderColor = Color.Gray;
                 burgerButton.ForeColor = Color.Black;
-                panel.AutoScroll = false; 
+                panel.AutoScroll = true; 
+
+
                 VScrollBar scrollBar = new VScrollBar();
-                scrollBar.Dock = DockStyle.Right;
-                scrollBar.Scroll += (sender, e) => {
-                    panel.VerticalScroll.Value = scrollBar.Value;
-                };
-                this.Controls.Add(panel);
-                panel.Controls.Add(scrollBar);
+
+                int totalContentHeight = 0;
+                foreach (Control control in panel.Controls)
+                {
+                    totalContentHeight += control.Height;
+                }
 
                 if (personnes != null)
                 {
@@ -83,6 +85,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
                     Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
                     add.Click += new EventHandler(add_Click);
+                    add.Location = new Point(90, interval + 10);
                     panel.Controls.Add(add);
                     panelOpen = true;
                 }
