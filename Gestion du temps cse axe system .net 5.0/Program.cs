@@ -227,10 +227,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
     {
         public static List<Personnes> GetListPersonneFromJson()
         {
+            
             string json = ImportJsonFromFile.GetJsonFromFile();
-
-            List<Personnes> Personnes = JsonConvert.DeserializeObject<List<Personnes>>(json);
-            return Personnes;
+            if (!String.IsNullOrEmpty(json))
+            {
+                List<Personnes> Personnes = JsonConvert.DeserializeObject<List<Personnes>>(json);
+                return Personnes;
+            }
+            else
+            {
+                List<Personnes> Personnes = new List<Personnes>();
+                return Personnes;
+            }
+            
 
         }
     }

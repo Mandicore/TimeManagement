@@ -13,6 +13,18 @@ namespace projet_gestion_temps_cse_axe_system
     {
         public static string GetJsonFromFile()
         {
+            string json = " ";
+            string file = "Data";
+            string filePath = "Data/personneList.json";
+
+            if (!Directory.Exists(file))
+            {
+                Directory.CreateDirectory(file);
+            }
+            using (StreamWriter sw = File.CreateText(filePath))
+            {
+                sw.Write(json);
+            }
             return File.ReadAllText("Data/personneList.json");
         }
         public static void Send(List<Personnes> personnes)
