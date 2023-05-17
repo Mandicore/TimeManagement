@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public TextBox name = new TextBox();
         public TextBox firstName = new TextBox();
 
-        public List<Personnes> personnes = new List<Personnes>();
+        public List<Personnes> personnes = GetListPersonnes.GetListPersonneFromJson();
         public Form1()
         {
             InitializeComponent();
@@ -38,8 +39,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             this.BackColor = background;
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
             this.MinimumSize = Screen.PrimaryScreen.WorkingArea.Size;
-
-
 
             //Home Text (date)
             Label HomeText = Styles.HomeText(background, foreground, Width, 100, this);
@@ -116,7 +115,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             {
                 string nameLog = name.Text;
                 string firstNameLog = firstName.Text;
-                
+
+                Personnes newUser = new Personnes(nameLog, firstNameLog, true);
+                personnes.Add(newUser);
+                ImportJsonFromFile.Send(personnes);
+
             }
             else
             {
