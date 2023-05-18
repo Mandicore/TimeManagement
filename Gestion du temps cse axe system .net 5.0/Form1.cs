@@ -104,8 +104,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             Button buttonPersonne = (Button)sender;
             int tag = int.Parse(buttonPersonne.Tag.ToString());
-
             Personnes personneSelect = Personnes.CheckById(personnes, tag);
+            Styles.PersonnePageStyle(personneSelect, infosPersonnes);
             infosPersonnes.Text = personneSelect.name + " " + personneSelect.firstName;
             infosPersonnes.Show();
         }

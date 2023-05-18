@@ -208,6 +208,23 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.Image = imageReduite;
             signIn.Controls.Add(pictureBox1);
         }
+        public static void PersonnePageStyle(Personnes personne, Form form)
+        {
+            Label labelName = LabelForPersonnePage(20, personne.name, 250, 20);
+            form.Controls.Add(labelName);
+        }
+        public static Label LabelForPersonnePage(int fontSize, string contain, int locationX, int locationY)
+        {
+            Label label = new Label();
+            label.BackColor = Color.FromArgb(24, 30, 42);
+            label.ForeColor = Color.FromArgb(166, 154, 121);
+            label.Size = new Size(200, 40);
+            label.Text = contain;
+            label.Font = new Font("Arial", fontSize, FontStyle.Bold);
+            label.Location = new Point(locationX, locationY);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            return label;
+        }
     }
     public static class ScreenSetings
     {
