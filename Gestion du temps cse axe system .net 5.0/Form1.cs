@@ -71,8 +71,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     {
 
                         string nameOnButton = personne.name + "\n" + personne.firstName;
-                        Button buttonPersonne = Styles.CreateButtonMenu(Color.Gray, foreground, nameOnButton);
+                        Button buttonPersonne = Styles.CreateButtonMenu(Color.Gray, foreground, nameOnButton, personne.id);
                         buttonPersonne.Location = new Point(20, interval);
+                        buttonPersonne.Click += new EventHandler(personnesButton_Click);
                         panel.Controls.Add(buttonPersonne);
                         interval += 90;
                     }
@@ -96,6 +97,17 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 panelOpen = false;
 
             }
+        }
+        private void personnesButton_Click(object sender, EventArgs e)
+        {
+            Form infosPersonnes = Styles.InfosPersonne(background);
+
+            Button buttonPersonne = (Button)sender;
+            int tag = int.Parse(buttonPersonne.Tag.ToString());
+
+            Personnes personneSelect = Personnes.CheckById(personnes, tag);
+            infosPersonnes.Text = personneSelect.name + " " + personneSelect.firstName;
+            infosPersonnes.Show();
         }
         private void add_Click(object sender, EventArgs e)
         {

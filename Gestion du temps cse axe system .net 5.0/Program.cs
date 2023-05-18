@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -70,6 +71,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             return label;
 
         }
+        public static Form InfosPersonne(Color background)
+        {
+            Form form = new Form();
+
+            form.Size = new System.Drawing.Size(1000, 700);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.BackColor = background;
+            form.MaximumSize = new System.Drawing.Size(1000, 700);
+            form.MinimumSize = new System.Drawing.Size(1000, 700);
+                
+            return form;
+
+        }
         public static Label FormLabel (string text, int locationY)
         {
             Label label = new Label();
@@ -100,10 +114,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
-        public static System.Windows.Forms.Button CreateButtonMenu(Color backColor, Color foreColor, string text)
+        public static System.Windows.Forms.Button CreateButtonMenu(Color backColor, Color foreColor, string text, int id)
         {
             System.Windows.Forms.Button button = new System.Windows.Forms.Button();
             button.Text = text;
+            button.Tag = id;
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
@@ -249,7 +264,20 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 return idTemp;
             }
         }
+        public static Personnes CheckById(List<Personnes> personnes, int buttonTag)
+        {
+            foreach (Personnes person in personnes)
+            {
+                if (person.id == buttonTag)
+                {
+                    return person;
+                }
+            }
+            Personnes Erreur = new Personnes("ERREUR", "ERREUR", true, 0);
+            return Erreur;
+        }
     }
+       
     class GetListPersonnes
     {
         public static List<Personnes> GetListPersonneFromJson()
