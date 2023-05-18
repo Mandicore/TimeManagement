@@ -139,10 +139,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             {
                 string nameLog = name.Text;
                 string firstNameLog = firstName.Text;
+                int id = Personnes.SetIdPersonne(personnes);
 
                 if (radioButton1.Checked)
                 {
-                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, true);
+                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, true, id);
                     personnes.Add(newUser);
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Inscrit avec succès");
@@ -158,7 +159,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 }
                 else if (radioButton2.Checked)
                 {
-                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, false);
+                    Personnes newUser = new Personnes(nameLog.ToUpper(), firstNameLog, false, id);
                     personnes.Add(newUser);
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Inscrit avec succès");

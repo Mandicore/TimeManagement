@@ -211,16 +211,43 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public string name;
         public string firstName;
         public bool genre;
+        public int id;
 
-        public Personnes(string name, string firstName, bool genre)
+        public Personnes(string name, string firstName, bool genre, int id)
         {
             this.name = name;
             this.firstName = firstName;
             this.genre = genre;
+            this.id = id;
         }
         public string AfficherNames()
         {
             return name.ToUpper() + " " + firstName.Substring(0, 1).ToUpper() + firstName.Substring(1);
+        }
+        public static int SetIdPersonne(List<Personnes> allOther)
+        {
+            int idTemp = 1;
+            if (allOther.Count != 0)
+            {
+                while (true)
+                {
+                    foreach (Personnes person in allOther)
+                    {
+                        if (idTemp == person.id)
+                        {
+                            idTemp = idTemp + 1;
+                        }
+                        else
+                        {
+                            return idTemp;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return idTemp;
+            }
         }
     }
     class GetListPersonnes
