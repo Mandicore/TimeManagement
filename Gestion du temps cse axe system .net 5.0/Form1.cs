@@ -81,6 +81,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
                 add.Click += new EventHandler(add_Click);
                 add.Location = new Point(90, interval + 10);
+                interval = 150;
                 panel.Controls.Add(add);
                 panelOpen = true;
 
