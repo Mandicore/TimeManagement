@@ -32,6 +32,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
         private Personnes personneSelect;
         private Form infosPersonnes;
+
+        private ComboBox boxYear;
+        private int Year;
         public Form1()
         {
             InitializeComponent();
@@ -75,7 +78,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 if (personnes != null)
                 {
                     
-                    Label panelTitle = Styles.panelTitle(foreground, Color.Gray);
+                    Label panelTitle = Styles.panelTitle(foreground, Color.Gray, "Utilisateurs", 17, new Point(70, 80), new Size(150, 40));
                     panel.Controls.Add(panelTitle);
                     foreach (Personnes personne in personnes)
                     {
@@ -117,10 +120,63 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             personneSelect = Personnes.CheckById(personnes, tag);
             Styles.PersonnePageStyle(personneSelect, infosPersonnes);
             infosPersonnes.Text = personneSelect.name + " " + personneSelect.firstName;
+
+            //Button delete user
             Button delete = Styles.ButtonDelete();
             delete.Click += new EventHandler(DeleteButton_Click);
             infosPersonnes.Controls.Add(delete);
+
+            //Button new Events
+            Button newEvent = Styles.CreateButtonAdd(foreground, background, "Nouvelles Heures ...");
+            newEvent.Click += new EventHandler(addEvent_Click);
+            newEvent.Location = new Point(418, 340);
+            infosPersonnes.Controls.Add(newEvent);
+            
+
+            //Show Form
             infosPersonnes.Show();
+        }
+        private void addEvent_Click(object sender, EventArgs e)
+        {
+            Form years = Styles.NewLittleForm(background, foreground, "Choisissez une année !");
+
+            //Create ComboBox
+            boxYear = Styles.ComboBoxYears();
+            years.Controls.Add(boxYear);
+
+            //Create Label
+            Label ActionForUser = Styles.panelTitle(foreground, background, "Année : ", 16, new Point(60, 94), new Size(150, 40));
+            years.Controls.Add(ActionForUser);
+
+            //Create Button
+            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+            SendYear.Click += new EventHandler(SendYear_Click);
+            SendYear.Location = new Point(130, 170);
+            years.Controls.Add(SendYear);
+
+
+            //print form
+            years.Show();
+            
+
+            /*
+            Form Month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+            Month.Show();
+
+            Form Day = Styles.NewLittleForm(background, foreground, "Choisissez un jour !");
+            Month.Show();*/
+        }
+        private void SendYear_Click(object sender, EventArgs e) 
+        {
+            try
+            {
+                Year = int.Parse(boxYear.SelectedItem.ToString());
+                MessageBox.Show("Année : " + Year);
+            }
+            catch
+            {
+
+            }
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {

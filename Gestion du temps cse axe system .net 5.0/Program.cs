@@ -1,18 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Security.Policy;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
@@ -58,15 +50,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return label;
         }
-        public static Label panelTitle(Color Foreground, Color background)
+        public static Label panelTitle(Color Foreground, Color background,string text, int fontSize, Point location, Size size)
         {
             Label label = new Label();
             label.BackColor = background;
             label.ForeColor = Foreground;
-            label.Size = new Size(150, 40);
-            label.Text = "Personnes";
-            label.Font = new Font("Arial", 17, FontStyle.Bold);
-            label.Location = new Point(70, 80);
+            label.Size = size;
+            label.Text = text;
+            label.Font = new Font("Arial", fontSize, FontStyle.Bold);
+            label.Location = location;
             label.TextAlign = ContentAlignment.MiddleCenter;
             return label;
 
@@ -139,7 +131,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.BackColor = backColor;
             button.ForeColor = foreColor;
             button.Font = new Font("Arial", 10, FontStyle.Bold);
-            button.Size = new Size(100, 30);
+            button.Size = new Size(120, 50);
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Color.Black;
             button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);
@@ -225,6 +217,17 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             pictureBox1.Image = imageReduite;
             signIn.Controls.Add(pictureBox1);
         }
+        public static Form NewLittleForm(Color Background, Color Foreground, string text)
+        {
+            Form form = new Form();
+            form.BackColor = Background;
+            form.ForeColor = Foreground;
+            form.Size = new Size(400, 300);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.Text = text;
+
+            return form;
+        }
         public static void PersonnePageStyle(Personnes personne, Form form)
         {
             Image imageReduite = null;
@@ -262,7 +265,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
 
             //ComboBox ...
-
+            /*
             System.Windows.Forms.ComboBox Years = ComboBoxYears();
             form.Controls.Add(Years);
 
@@ -270,7 +273,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             form.Controls.Add(Month);
 
             System.Windows.Forms.ComboBox Days = ComboBoxDays();
-            form.Controls.Add(Days);
+            form.Controls.Add(Days);*/
 
         }
         public static System.Windows.Forms.ComboBox ComboBoxMonth()
@@ -300,15 +303,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public static System.Windows.Forms.ComboBox ComboBoxYears()
         {
             System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
-            comboBox.Location = new System.Drawing.Point(150, 330);
+            comboBox.Location = new System.Drawing.Point(200, 100);
             comboBox.Size = new System.Drawing.Size(100, 40);
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
             List<int> yearList = new List<int>();
-            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+            comboBox.Font = new Font("Arial", 15, FontStyle.Bold);
 
             int startYear = 2023;
-            int endYear = 2099;
+            int endYear = 2049;
 
             for (int year = startYear; year <= endYear; year++)
             {
@@ -469,4 +472,3 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
     }
 }
-
