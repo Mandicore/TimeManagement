@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
@@ -9,6 +10,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
     public partial class Form1 : Form
     {
         int interval = 150;
+
+        private MonthCalendar calendarDefault;
 
         private Color background = Color.FromArgb(24, 30, 42);
         private Color foreground = Color.FromArgb(166, 154, 121);
@@ -49,6 +52,10 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             burgerButton = Styles.CreateButton(background, foreground);
             burgerButton.Click += new EventHandler(burgerButton_Click);
             this.Controls.Add(burgerButton);
+
+            //calendar default settings
+            calendarDefault = new MonthCalendar();
+            Calendar.CreateDefaultCalendar(calendarDefault);
 
 
         }
@@ -183,6 +190,12 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     panelOpen = false;
 
                     signIn.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("ERREUR : Veuillez remplir tous les champs");
+                    name.Text = null;
+                    firstName.Text = null;
                 }
 
             }

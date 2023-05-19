@@ -210,8 +210,119 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         public static void PersonnePageStyle(Personnes personne, Form form)
         {
-            Label labelName = LabelForPersonnePage(20, personne.name, 250, 20);
+            Image imageReduite = null;
+            if (personne.genre == true)
+            {
+                Image imageOriginale = Image.FromFile("img/ppmen.png");
+
+                int nouvelleLargeur = 100;
+                int nouvelleHauteur = 100;
+
+                imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
+            }
+            else
+            {
+                Image imageOriginale = Image.FromFile("img/ppwomen.png");
+
+                int nouvelleLargeur = 100;
+                int nouvelleHauteur = 100;
+
+                imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
+            }
+
+            PictureBox pictureBox1 = new PictureBox();
+            pictureBox1.Location = new Point(423, 50);
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = imageReduite;
+            form.Controls.Add(pictureBox1);
+
+            //Print Names
+            Label labelName = LabelForPersonnePage(22, personne.name, 375, 180);
+            Label labelFirstName = LabelForPersonnePage(20, personne.firstName, 375, 220);
+            form.Controls.Add(labelFirstName);
             form.Controls.Add(labelName);
+
+            //ComboBox ...
+
+            System.Windows.Forms.ComboBox Years = ComboBoxYears();
+            form.Controls.Add(Years);
+
+            System.Windows.Forms.ComboBox Month = ComboBoxMonth();
+            form.Controls.Add(Month);
+
+            System.Windows.Forms.ComboBox Days = ComboBoxDays();
+            form.Controls.Add(Days);
+
+        }
+        public static System.Windows.Forms.ComboBox ComboBoxMonth()
+        {
+            System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
+            comboBox.Location = new System.Drawing.Point(300, 330);
+            comboBox.Size = new System.Drawing.Size(160, 40);
+            comboBox.BackColor = Color.FromArgb(24, 30, 42);
+            comboBox.ForeColor = Color.FromArgb(166, 154, 121);
+            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+
+            string[] monthNames = new string[]
+            {
+                "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
+                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+            };
+
+
+
+
+            comboBox.DataSource = monthNames;
+
+            return comboBox;
+
+
+        }
+        public static System.Windows.Forms.ComboBox ComboBoxYears()
+        {
+            System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
+            comboBox.Location = new System.Drawing.Point(150, 330);
+            comboBox.Size = new System.Drawing.Size(100, 40);
+            comboBox.BackColor = Color.FromArgb(24, 30, 42);
+            comboBox.ForeColor = Color.FromArgb(166, 154, 121);
+            List<int> yearList = new List<int>();
+            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+
+            int startYear = 2023;
+            int endYear = 2099;
+
+            for (int year = startYear; year <= endYear; year++)
+            {
+                yearList.Add(year);
+            }
+
+            comboBox.DataSource = yearList;
+            comboBox.SelectedValue = DateTime.Now.Year;
+            return comboBox;
+        }
+        public static System.Windows.Forms.ComboBox ComboBoxDays()
+        {
+            System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
+            comboBox.Location = new System.Drawing.Point(500, 330);
+            comboBox.Size = new System.Drawing.Size(100, 40);
+            comboBox.BackColor = Color.FromArgb(24, 30, 42);
+            comboBox.ForeColor = Color.FromArgb(166, 154, 121);
+            List<int> yearList = new List<int>();
+            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+
+            var Days = new List<int>();
+
+            for (int i = 1; i < 31; i++)
+            {
+                Days.Add(i);
+            }
+
+
+
+
+            comboBox.DataSource = Days;
+            return comboBox;
         }
         public static Label LabelForPersonnePage(int fontSize, string contain, int locationX, int locationY)
         {
@@ -244,13 +355,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public string firstName;
         public bool genre;
         public int id;
+        public Dictionary<DateTime, DateTime> eventsDictionary;
 
-        public Personnes(string name, string firstName, bool genre, int id)
+        public Personnes(string name, string firstName, bool genre, int id, List<DateTime> dates = null)
         {
             this.name = name;
             this.firstName = firstName;
             this.genre = genre;
             this.id = id;
+            this.eventsDictionary = eventsDictionary;
         }
         public string AfficherNames()
         {
@@ -313,6 +426,25 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             }
             
 
+        }
+    }
+    public class Calendar
+    {
+
+        public static void CreateDefaultCalendar(MonthCalendar calendar)
+        {
+            calendar.MinDate = new DateTime(2023, 1, 1);
+            calendar.MaxDate = new DateTime(2100, 12, 31);
+            calendar.Dock = DockStyle.Fill;
+        }
+    }
+    public class DateAndTime
+    {
+        public DateTime DateTimeValue { get; set; }
+
+        public override string ToString()
+        {
+            return DateTimeValue.ToString("yyyy-MM-dd HH:mm");
         }
     }
 }
