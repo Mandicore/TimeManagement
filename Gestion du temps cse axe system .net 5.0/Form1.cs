@@ -29,6 +29,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
 
         public List<Personnes> personnes = GetListPersonnes.GetListPersonneFromJson();
+
+        private Personnes personneSelect;
+        private Form infosPersonnes;
         public Form1()
         {
             InitializeComponent();
@@ -107,14 +110,30 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         private void personnesButton_Click(object sender, EventArgs e)
         {
-            Form infosPersonnes = Styles.InfosPersonne(background);
+            infosPersonnes = Styles.InfosPersonne(background);
 
             Button buttonPersonne = (Button)sender;
             int tag = int.Parse(buttonPersonne.Tag.ToString());
-            Personnes personneSelect = Personnes.CheckById(personnes, tag);
+            personneSelect = Personnes.CheckById(personnes, tag);
             Styles.PersonnePageStyle(personneSelect, infosPersonnes);
             infosPersonnes.Text = personneSelect.name + " " + personneSelect.firstName;
+            Button delete = Styles.ButtonDelete();
+            delete.Click += new EventHandler(DeleteButton_Click);
+            infosPersonnes.Controls.Add(delete);
             infosPersonnes.Show();
+        }
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (personneSelect != null)
+            {
+                personnes.Remove(personneSelect);
+                MessageBox.Show("La personne a été supprimée avec succès.");
+                personneSelect = null;
+                ImportJsonFromFile.Send(personnes);
+                panelOpen = false;
+                this.Controls.Remove(panel);
+                infosPersonnes.Hide();
+            }
         }
         private void add_Click(object sender, EventArgs e)
         {
@@ -172,7 +191,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     burgerButton.FlatAppearance.BorderColor = background;
                     burgerButton.ForeColor = foreground;
                     panelOpen = false;
-
+                    this.Controls.Remove(panel);
                     signIn.Hide();
 
                 }

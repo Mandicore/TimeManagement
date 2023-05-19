@@ -146,6 +146,23 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
+        public static System.Windows.Forms.Button ButtonDelete()
+        {
+            System.Windows.Forms.Button button = new System.Windows.Forms.Button();
+            button.Text = "Supprimer";
+            button.TextAlign = ContentAlignment.MiddleCenter;
+            button.Location = new Point(15, 15);
+            button.BackColor = Color.Red;
+            button.ForeColor = Color.Black;
+            button.Font = new Font("Arial", 12, FontStyle.Bold);
+            button.Size = new Size(100, 40);
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderColor = Color.Black;
+            button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);
+            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
+
+            return button;
+        }
         public static System.Windows.Forms.Button CreateButtonNewUser(Color backColor, Color foreColor, int LocationX, int LocationY, string text)
         {
             System.Windows.Forms.Button button = new System.Windows.Forms.Button();
@@ -243,6 +260,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             form.Controls.Add(labelFirstName);
             form.Controls.Add(labelName);
 
+
             //ComboBox ...
 
             System.Windows.Forms.ComboBox Years = ComboBoxYears();
@@ -318,12 +336,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 Days.Add(i);
             }
 
-
-
-
             comboBox.DataSource = Days;
             return comboBox;
         }
+
+
+
+
+
+
         public static Label LabelForPersonnePage(int fontSize, string contain, int locationX, int locationY)
         {
             Label label = new Label();
