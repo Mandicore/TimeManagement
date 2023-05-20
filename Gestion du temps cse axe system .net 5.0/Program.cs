@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
@@ -456,6 +457,27 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public override string ToString()
         {
             return DateTimeValue.ToString("yyyy-MM-dd HH:mm");
+        }
+    }
+    class TimeManagement
+    {
+        public static int hourOnThisMonth(Personnes personne) 
+        {
+            DateTime dateActuelle = DateTime.Now;
+            int hourinMonth = personne.eventsDictionary
+                .Where(kv => kv.Key.Year == dateActuelle.Year && kv.Key.Month == dateActuelle.Month)
+                .Sum(kv => kv.Value);
+
+            return hourinMonth;
+        }
+        public static int hourOnThisYear(Personnes personne)
+        {
+            DateTime dateActuelle = DateTime.Now;
+            int hourinMonth = personne.eventsDictionary
+                .Where(kv => kv.Key.Year == dateActuelle.Year)
+                .Sum(kv => kv.Value);
+
+            return hourinMonth;
         }
     }
 }

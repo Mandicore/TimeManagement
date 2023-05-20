@@ -161,7 +161,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             newEvent.Click += new EventHandler(addEvent_Click);
             newEvent.Location = new Point(418, 340);
             infosPersonnes.Controls.Add(newEvent);
-            
+
+            int hourOnThisMonth = TimeManagement.hourOnThisMonth(personneSelect);
+            int hourOnThisYear = TimeManagement.hourOnThisYear(personneSelect);
+
+            MessageBox.Show("nb heure " + hourOnThisMonth);
 
             //Show Form
             infosPersonnes.Show();
