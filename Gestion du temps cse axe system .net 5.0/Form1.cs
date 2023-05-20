@@ -45,6 +45,8 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private ComboBox boxYear;
         private ComboBox boxMonth;
         private ComboBox boxDays;
+        private ComboBox boxHour;
+        private ComboBox boxDuration;
         private List<string> monthWith30Days = new List<string>
         {
             "Février",
@@ -231,23 +233,23 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             //create Box
             if ((leapYear.Contains(yearByUser)) && (monthByUser == "Février"))
             {
-                boxMonth = Styles.ComboBoxDays(30);
+                boxDays = Styles.ComboBoxDays(30, new Size(100, 40), new Point(190, 100), 15);
             }
             else if (monthWith30Days.Contains(monthByUser))
             {
-                boxMonth = Styles.ComboBoxDays(31);
+                boxDays = Styles.ComboBoxDays(31, new Size(100, 40), new Point(190, 100), 15);
                 
             }
             else
             {
-                boxMonth = Styles.ComboBoxDays(32);
+                boxDays = Styles.ComboBoxDays(32, new Size(100, 40), new Point(190, 100), 15);
             }
 
-            days.Controls.Add(boxMonth);
+            days.Controls.Add(boxDays);
 
 
             //Create Label
-            Label ActionForUser = Styles.panelTitle(foreground, background, "Jour : ", 16, new Point(60, 94), new Size(150, 40));
+            Label ActionForUser = Styles.panelTitle(foreground, background, "Jour : ", 16, new Point(60, 94), new Size(100, 40));
             days.Controls.Add(ActionForUser);
 
             //Create Button
@@ -267,23 +269,39 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             {
                 dayByUser = int.Parse(boxDays.SelectedItem.ToString());
 
-                hour = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+                hour = Styles.NewLittleForm(background, foreground, "Choisissez une heure de début !");
 
-                boxMonth = Styles.ComboBoxMonth();
-                month.Controls.Add(boxMonth);
+                boxHour = Styles.ComboBoxDays(24, new Size(70, 40), new Point (165, 50), 12);
+                hour.Controls.Add(boxHour);
 
                 //Create Label
-                Label ActionForUser = Styles.panelTitle(foreground, background, "Mois : ", 16, new Point(60, 94), new Size(150, 40));
-                month.Controls.Add(ActionForUser);
+                Label ActionForUser11 = Styles.panelTitle(foreground, background, "Heure de début : ", 12, new Point(0, 50), new Size(190, 40));
+                hour.Controls.Add(ActionForUser11);
+
+                Label ActionForUser12 = Styles.panelTitle(foreground, background, "Heure", 12, new Point(180, 50), new Size(190, 40));
+                hour.Controls.Add(ActionForUser12);
+
+                //seconde question
+
+                boxDuration = Styles.ComboBoxDays(24, new Size(70, 40), new Point(165, 100), 12);
+                hour.Controls.Add(boxDuration);
+
+
+                //Create Label
+                Label ActionForUser21 = Styles.panelTitle(foreground, background, "Durée : ", 12, new Point(0, 94), new Size(190, 40));
+                hour.Controls.Add(ActionForUser21);
+
+                Label ActionForUser22 = Styles.panelTitle(foreground, background, "Heure", 12, new Point(180, 94), new Size(190, 40));
+                hour.Controls.Add(ActionForUser22);
 
                 //Create Button
                 Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
-                SendYear.Click += new EventHandler(SendMonth_Click);
+                SendYear.Click += new EventHandler(SendHour_Click);
                 SendYear.Location = new Point(130, 170);
-                month.Controls.Add(SendYear);
+                hour.Controls.Add(SendYear);
 
-                month.Show();
-                years.Hide();
+                hour.Show();
+                days.Hide();
 
             }
             catch
@@ -291,6 +309,10 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 MessageBox.Show("Erreur : ");
             }
             
+        }
+        private void SendHour_Click(object sender, EventArgs e)
+        {
+
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
