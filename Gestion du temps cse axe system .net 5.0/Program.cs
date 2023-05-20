@@ -593,7 +593,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public static void CreatePDF(int year, Dictionary<DateTime, int> dictionary, int allTotal, string name)
         {
             string downloadFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
-            string pdfFilePath = Path.Combine(downloadFolderPath, "Descriptif " + year + ".pdf");
+            string pdfFilePath = Path.Combine(downloadFolderPath, "Récapitulatif " + name + " " + year + ".pdf");
 
             var january = TimeManagement.FilterDictionaryMonth(dictionary, 1);
             var totaljanuary = TimeManagement.hourByMonth(dictionary, 1);
