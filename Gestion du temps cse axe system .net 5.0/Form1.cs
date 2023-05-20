@@ -38,6 +38,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private Form hour;
 
         // Create new event
+        private int DurationByUser;
         private int yearByUser;
         private string monthByUser;
         private int dayByUser;
@@ -187,13 +188,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             //print form
             years.Show();
             
-
-            /*
-            Form Month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
-            Month.Show();
-
-            Form Day = Styles.NewLittleForm(background, foreground, "Choisissez un jour !");
-            Month.Show();*/
         }
         private void SendYear_Click(object sender, EventArgs e) 
         {
@@ -312,6 +306,32 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         private void SendHour_Click(object sender, EventArgs e)
         {
+            hourByUser = int.Parse(boxHour.SelectedItem.ToString());
+            DurationByUser = int.Parse(boxDuration.SelectedItem.ToString());
+
+            string dateString = $"{monthByUser} {dayByUser}, {yearByUser} {hourByUser}:00:00";
+            DateTime dateTime = DateTime.ParseExact(dateString, "MMMM d, yyyy H:mm:ss", new CultureInfo("fr-FR"));
+
+            personneSelect.eventsDictionary ??= new Dictionary<DateTime, int>();
+            personneSelect.eventsDictionary.Add(dateTime, DurationByUser);
+
+            int index = personnes.FindIndex(p => p.id == personneSelect.id);
+
+            if (index != -1)
+            {
+                // Remplacement de l'objet dans la liste
+                personnes[index] = personneSelect;
+                ImportJsonFromFile.Send(personnes);
+                MessageBox.Show("Nouvel event créer");
+                hour.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Erreur");
+                hour.Hide();
+            }
+
+
 
         }
         private void DeleteButton_Click(object sender, EventArgs e)

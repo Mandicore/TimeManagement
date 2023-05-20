@@ -263,18 +263,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             form.Controls.Add(labelFirstName);
             form.Controls.Add(labelName);
 
-
-            //ComboBox ...
-            /*
-            System.Windows.Forms.ComboBox Years = ComboBoxYears();
-            form.Controls.Add(Years);
-
-            System.Windows.Forms.ComboBox Month = ComboBoxMonth();
-            form.Controls.Add(Month);
-
-            System.Windows.Forms.ComboBox Days = ComboBoxDays();
-            form.Controls.Add(Days);*/
-
         }
         public static System.Windows.Forms.ComboBox ComboBoxMonth()
         {
@@ -379,7 +367,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public string firstName;
         public bool genre;
         public int id;
-        public Dictionary<DateTime, DateTime> eventsDictionary;
+        public Dictionary<DateTime, int> eventsDictionary;
 
         public Personnes(string name, string firstName, bool genre, int id, List<DateTime> dates = null)
         {
@@ -387,7 +375,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             this.firstName = firstName;
             this.genre = genre;
             this.id = id;
-            this.eventsDictionary = eventsDictionary;
+            eventsDictionary = new Dictionary<DateTime, int>();
         }
         public string AfficherNames()
         {
