@@ -565,6 +565,20 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return filteredDictionary;
         }
+        public static Dictionary<DateTime, int> FilterDictionaryMonth(Dictionary<DateTime, int> dictionary, int month)
+        {
+            Dictionary<DateTime, int> filteredDictionary = new Dictionary<DateTime, int>();
+
+            foreach (var kvp in dictionary)
+            {
+                if (kvp.Key.Month == month)
+                {
+                    filteredDictionary.Add(kvp.Key, kvp.Value);
+                }
+            }
+
+            return filteredDictionary;
+        }
     }
     class PDF
     {
@@ -572,6 +586,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             string downloadFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             string pdfFilePath = Path.Combine(downloadFolderPath, "Descriptif " + year + ".pdf");
+
+            var january = TimeManagement.FilterDictionaryMonth(dictionary, 1);
+            var february = TimeManagement.FilterDictionaryMonth(dictionary, 2);
+            var march = TimeManagement.FilterDictionaryMonth(dictionary, 3);
+            var april = TimeManagement.FilterDictionaryMonth(dictionary, 4);
+            var may = TimeManagement.FilterDictionaryMonth(dictionary, 5);
+            var june = TimeManagement.FilterDictionaryMonth(dictionary, 6);
+            var jully = TimeManagement.FilterDictionaryMonth(dictionary, 7);
+            var august = TimeManagement.FilterDictionaryMonth(dictionary, 8);
+            var september = TimeManagement.FilterDictionaryMonth(dictionary, 9);
+            var october = TimeManagement.FilterDictionaryMonth(dictionary, 10);
+            var november = TimeManagement.FilterDictionaryMonth(dictionary, 11);
+            var december = TimeManagement.FilterDictionaryMonth(dictionary, 12);
 
             Document document = new Document();
 
@@ -597,13 +624,162 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             title.SpacingAfter = 70f;
             document.Add(title);
 
-            foreach (KeyValuePair<DateTime, int> kvp in dictionary)
+            if (january.Count != 0)
             {
-                Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
-                infos.SpacingAfter = 5f;
-                document.Add(infos);
-            }
+                Paragraph janvier = new Paragraph("Janvier :", secondTitleFont);
+                janvier.SpacingAfter = 10f;
+                document.Add(janvier);
 
+                foreach (KeyValuePair<DateTime, int> kvp in january)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (february.Count != 0)
+            {
+                Paragraph fevrier = new Paragraph("Février :", secondTitleFont);
+                fevrier.SpacingAfter = 10f;
+                document.Add(fevrier);
+
+                foreach (KeyValuePair<DateTime, int> kvp in february)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (march.Count != 0)
+            {
+                Paragraph mars = new Paragraph("mars :", secondTitleFont);
+                mars.SpacingAfter = 15f;
+                document.Add(mars);
+
+                foreach (KeyValuePair<DateTime, int> kvp in march)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (april.Count != 0)
+            {
+                Paragraph avril = new Paragraph("avril :", secondTitleFont);
+                avril.SpacingAfter = 15f;
+                document.Add(avril);
+
+                foreach (KeyValuePair<DateTime, int> kvp in april)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (may.Count != 0)
+            {
+                Paragraph mai = new Paragraph("mai :", secondTitleFont);
+                mai.SpacingAfter = 15f;
+                document.Add(mai);
+
+                foreach (KeyValuePair<DateTime, int> kvp in may)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (june.Count != 0)
+            {
+                Paragraph juin = new Paragraph("juin :", secondTitleFont);
+                juin.SpacingAfter = 15f;
+                document.Add(juin);
+
+                foreach (KeyValuePair<DateTime, int> kvp in june)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (jully.Count != 0)
+            {
+                Paragraph juillet = new Paragraph("juillet :", secondTitleFont);
+                juillet.SpacingAfter = 15f;
+                document.Add(juillet);
+
+                foreach (KeyValuePair<DateTime, int> kvp in jully)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (august.Count != 0)
+            {
+                Paragraph aout = new Paragraph("août :", secondTitleFont);
+                aout.SpacingAfter = 15f;
+                document.Add(aout);
+
+                foreach (KeyValuePair<DateTime, int> kvp in august)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (september.Count != 0)
+            {
+                Paragraph septembre = new Paragraph("Septembre :", secondTitleFont);
+                septembre.SpacingAfter = 15f;
+                document.Add(septembre);
+
+                foreach (KeyValuePair<DateTime, int> kvp in september)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (october.Count != 0)
+            {
+                Paragraph octobre = new Paragraph("Octobre :", secondTitleFont);
+                octobre.SpacingAfter = 15f;
+                document.Add(octobre);
+
+                foreach (KeyValuePair<DateTime, int> kvp in october)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (november.Count != 0)
+            {
+                Paragraph novembre = new Paragraph("Novembre :", secondTitleFont);
+                novembre.SpacingAfter = 15f;
+                document.Add(novembre);
+
+                foreach (KeyValuePair<DateTime, int> kvp in november)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
+            if (december.Count != 0)
+            {
+                Paragraph decembre = new Paragraph("Décembre :", secondTitleFont);
+                decembre.SpacingAfter = 15f;
+                document.Add(decembre);
+
+                foreach (KeyValuePair<DateTime, int> kvp in december)
+                {
+                    Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                    infos.SpacingAfter = 5f;
+                    document.Add(infos);
+                }
+            }
 
             document.Close();
 
