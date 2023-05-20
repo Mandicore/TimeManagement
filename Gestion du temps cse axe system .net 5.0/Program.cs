@@ -124,7 +124,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 116, 108, 97);
             return button;
         }
-        public static System.Windows.Forms.Button CreateButtonAdd(Color backColor, Color foreColor, string text)
+        public static System.Windows.Forms.Button CreateButtonAdd(Color backColor, Color foreColor, string text, Size size)
         {
             System.Windows.Forms.Button button = new System.Windows.Forms.Button();
             button.Text = text;
@@ -132,7 +132,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.BackColor = backColor;
             button.ForeColor = foreColor;
             button.Font = new Font("Arial", 10, FontStyle.Bold);
-            button.Size = new Size(120, 50);
+            button.Size = size;
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Color.Black;
             button.FlatAppearance.MouseDownBackColor = Color.FromArgb(80, 208, 200, 178);

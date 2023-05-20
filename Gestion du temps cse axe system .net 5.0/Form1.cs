@@ -122,7 +122,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     }
 
                 }
-                Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...");
+                Button add = Styles.CreateButtonAdd(foreground, background, "Ajouter ...", new Size(120, 40));
                 add.Click += new EventHandler(add_Click);
                 add.Location = new Point(90, interval + 10);
                 interval = 150;
@@ -157,7 +157,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             infosPersonnes.Controls.Add(delete);
 
             //Button new Events
-            Button newEvent = Styles.CreateButtonAdd(foreground, background, "Nouvelles Heures ...");
+            Button newEvent = Styles.CreateButtonAdd(foreground, background, "Nouvelles Heures ...", new Size(140, 65));
             newEvent.Click += new EventHandler(addEvent_Click);
             newEvent.Location = new Point(418, 340);
             infosPersonnes.Controls.Add(newEvent);
@@ -177,6 +177,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             Label legendHourYear = Styles.LabelHour("Nombre d'heures \nsur cette année", "Arial", 13, new Point(360, 475), new Size(220, 200), foreground, background);
             infosPersonnes.Controls.Add(legendHourYear);
 
+            Button summaryYear = Styles.CreateButtonAdd(foreground, background, "Récapitulatif", new Size(110, 55));
+            summaryYear.Click += new EventHandler(addEvent_Click);
+            summaryYear.Location = new Point(750, 500);
+            infosPersonnes.Controls.Add(summaryYear);
+
             //Show Form
             infosPersonnes.Show();
         }
@@ -194,7 +199,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             years.Controls.Add(ActionForUser);
 
             //Create Button
-            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !", new Size(120, 40));
             SendYear.Click += new EventHandler(SendYear_Click);
             SendYear.Location = new Point(130, 170);
             years.Controls.Add(SendYear);
@@ -222,7 +227,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 month.Controls.Add(ActionForUser);
 
                 //Create Button
-                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !", new Size(120, 40));
                 SendYear.Click += new EventHandler(SendMonth_Click);
                 SendYear.Location = new Point(130, 170);
                 month.Controls.Add(SendYear);
@@ -264,7 +269,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             days.Controls.Add(ActionForUser);
 
             //Create Button
-            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !", new Size(120, 40));
             SendYear.Click += new EventHandler(SendDay_Click);
             SendYear.Location = new Point(130, 170);
             days.Controls.Add(SendYear);
@@ -308,7 +313,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 hour.Controls.Add(ActionForUser22);
 
                 //Create Button
-                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !", new Size(120, 40));
                 SendYear.Click += new EventHandler(SendHour_Click);
                 SendYear.Location = new Point(130, 170);
                 hour.Controls.Add(SendYear);
@@ -350,6 +355,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                     ImportJsonFromFile.Send(personnes);
                     MessageBox.Show("Nouvel event créer");
                     hour.Hide();
+                    infosPersonnes.Hide();
                 }
                 else
                 {
