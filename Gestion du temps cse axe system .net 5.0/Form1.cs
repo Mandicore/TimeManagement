@@ -33,12 +33,37 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private Form years;
         private Form signIn;
         private Form infosPersonnes;
+        private Form month;
+        private Form days;
+        private Form hour;
 
         // Create new event
         private int yearByUser;
         private string monthByUser;
+        private int dayByUser;
+        private int hourByUser;
         private ComboBox boxYear;
         private ComboBox boxMonth;
+        private ComboBox boxDays;
+        private List<string> monthWith30Days = new List<string>
+        {
+            "Février",
+            "Avril",
+            "Juin",
+            "Septembre",
+            "Novembre"
+        };
+        private List<int> leapYear = new List<int>
+        {
+            2024,
+            2028,
+            2032,
+            2036,
+            2040,
+            2044,
+            2048
+        };
+
 
         public Form1()
         {
@@ -174,7 +199,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             {
                 yearByUser = int.Parse(boxYear.SelectedItem.ToString());
 
-                Form month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+                month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
 
                 boxMonth = Styles.ComboBoxMonth();
                 month.Controls.Add(boxMonth);
@@ -201,9 +226,71 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             monthByUser = boxMonth.SelectedItem.ToString();
 
-            Form days = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+            days = Styles.NewLittleForm(background, foreground, "Choisissez un jour !");
+
+            //create Box
+            if ((leapYear.Contains(yearByUser)) && (monthByUser == "Février"))
+            {
+                boxMonth = Styles.ComboBoxDays(30);
+            }
+            else if (monthWith30Days.Contains(monthByUser))
+            {
+                boxMonth = Styles.ComboBoxDays(31);
+                
+            }
+            else
+            {
+                boxMonth = Styles.ComboBoxDays(32);
+            }
+
+            days.Controls.Add(boxMonth);
 
 
+            //Create Label
+            Label ActionForUser = Styles.panelTitle(foreground, background, "Jour : ", 16, new Point(60, 94), new Size(150, 40));
+            days.Controls.Add(ActionForUser);
+
+            //Create Button
+            Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+            SendYear.Click += new EventHandler(SendDay_Click);
+            SendYear.Location = new Point(130, 170);
+            days.Controls.Add(SendYear);
+
+            days.Show();
+            month.Hide();
+
+
+        }
+        private void SendDay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dayByUser = int.Parse(boxDays.SelectedItem.ToString());
+
+                hour = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+
+                boxMonth = Styles.ComboBoxMonth();
+                month.Controls.Add(boxMonth);
+
+                //Create Label
+                Label ActionForUser = Styles.panelTitle(foreground, background, "Mois : ", 16, new Point(60, 94), new Size(150, 40));
+                month.Controls.Add(ActionForUser);
+
+                //Create Button
+                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+                SendYear.Click += new EventHandler(SendMonth_Click);
+                SendYear.Location = new Point(130, 170);
+                month.Controls.Add(SendYear);
+
+                month.Show();
+                years.Hide();
+
+            }
+            catch
+            {
+                MessageBox.Show("Erreur : ");
+            }
+            
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {

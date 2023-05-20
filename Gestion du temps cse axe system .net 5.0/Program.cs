@@ -287,7 +287,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             string[] monthNames = new string[]
             {
-                "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
+                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
                 "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
             };
 
@@ -322,19 +322,19 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             comboBox.SelectedValue = DateTime.Now.Year;
             return comboBox;
         }
-        public static System.Windows.Forms.ComboBox ComboBoxDays()
+        public static System.Windows.Forms.ComboBox ComboBoxDays(int nbDays)
         {
             System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
-            comboBox.Location = new System.Drawing.Point(500, 330);
+            comboBox.Location = new System.Drawing.Point(190, 100);
             comboBox.Size = new System.Drawing.Size(100, 40);
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
             List<int> yearList = new List<int>();
-            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+            comboBox.Font = new Font("Arial", 15, FontStyle.Bold);
 
             var Days = new List<int>();
 
-            for (int i = 1; i < 31; i++)
+            for (int i = 1; i < nbDays; i++)
             {
                 Days.Add(i);
             }
