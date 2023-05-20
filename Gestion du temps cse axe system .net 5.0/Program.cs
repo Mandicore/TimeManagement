@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Reflection.Metadata;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using System.Xml.Linq;
 using Newtonsoft.Json;
 using projet_gestion_temps_cse_axe_system;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Document = iTextSharp.text.Document;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
@@ -40,7 +49,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.Size = new Size(sizeX - 30, sizeY);
             label.BackColor = backColor;
             label.ForeColor = color;
-            label.Font = new Font("Arial", 30, FontStyle.Italic);
+            label.Font = new System.Drawing.Font("Arial", 30, FontStyle.Italic);
             label.TextAlign = ContentAlignment.MiddleCenter;
 
             int LocationX = (15) + (form.ClientSize.Width / 2) - (label.Size.Width / 2);
@@ -58,7 +67,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.ForeColor = Foreground;
             label.Size = size;
             label.Text = text;
-            label.Font = new Font("Arial", fontSize, FontStyle.Bold);
+            label.Font = new System.Drawing.Font("Arial", fontSize, FontStyle.Bold);
             label.Location = location;
             label.TextAlign = ContentAlignment.MiddleCenter;
             return label;
@@ -84,7 +93,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.Size = new Size(80, 50);
             label.BackColor = Color.FromArgb(24, 30, 42);
             label.ForeColor = Color.FromArgb(166, 154, 121);
-            label.Font = new Font("Arial", 12, FontStyle.Italic);
+            label.Font = new System.Drawing.Font("Arial", 12, FontStyle.Italic);
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Location = new Point(60, locationY);
             label.Anchor = AnchorStyles.None;
@@ -98,7 +107,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
-            button.Font = new Font("Arial", 30, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 30, FontStyle.Bold);
             button.Size = new Size(55, 55);
             button.Location = new Point(15, 15);
             button.FlatStyle = FlatStyle.Flat;
@@ -115,7 +124,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
-            button.Font = new Font("Arial", 18, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 18, FontStyle.Bold);
             button.Size = new Size(250, 80);
             button.Location = new Point(20, 100);
             button.FlatStyle = FlatStyle.Flat;
@@ -131,7 +140,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
-            button.Font = new Font("Arial", 10, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 10, FontStyle.Bold);
             button.Size = size;
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Color.Black;
@@ -147,7 +156,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.Location = new Point(15, 15);
             button.BackColor = Color.Red;
             button.ForeColor = Color.Black;
-            button.Font = new Font("Arial", 12, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
             button.Size = new Size(100, 40);
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Color.Black;
@@ -163,7 +172,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             button.TextAlign = ContentAlignment.MiddleCenter;
             button.BackColor = backColor;
             button.ForeColor = foreColor;
-            button.Font = new Font("Arial", 10, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 10, FontStyle.Bold);
             button.Size = new Size(100, 30);
             button.Location = new Point(LocationX, LocationY);
             button.FlatStyle = FlatStyle.Flat;
@@ -186,7 +195,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
             textBox.Location = new System.Drawing.Point(locationX, locationY);
             textBox.Size = new System.Drawing.Size(350, 100);
-            textBox.Font = new Font(textBox.Font.FontFamily, 15, textBox.Font.Style);
+            textBox.Font = new System.Drawing.Font(textBox.Font.FontFamily, 15, textBox.Font.Style);
 
             return textBox;
         }
@@ -209,7 +218,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.Size = size;
             label.BackColor = background;
             label.ForeColor = foreground;
-            label.Font = new Font(font, fontSize, FontStyle.Italic);
+            label.Font = new System.Drawing.Font(font, fontSize, FontStyle.Italic);
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Location = location;
             label.Anchor = AnchorStyles.None;
@@ -218,12 +227,12 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         public static void ItemsAddUser(Form signIn, System.Windows.Forms.TextBox name, System.Windows.Forms.TextBox firstName, System.Windows.Forms.RadioButton radioButton1, System.Windows.Forms.RadioButton radioButton2, System.Windows.Forms.GroupBox groupBox = null)
         {
-            Image imageOriginale = Image.FromFile("img/add.png");
+            System.Drawing.Image imageOriginale = System.Drawing.Image.FromFile("img/add.png");
 
             int nouvelleLargeur = 100;
             int nouvelleHauteur = 100;
 
-            Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
+            System.Drawing.Image imageReduite = imageOriginale.GetThumbnailImage(nouvelleLargeur, nouvelleHauteur, null, IntPtr.Zero);
 
             PictureBox pictureBox1 = new PictureBox();
             pictureBox1.Location = new Point(185, 30);
@@ -243,12 +252,24 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return form;
         }
+        public static Form NewLoadingForm(Color Background, Color Foreground, string text)
+        {
+            Form form = new Form();
+            form.BackColor = Background;
+            form.ForeColor = Foreground;
+            form.Size = new Size(350, 200);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.ControlBox = false;
+            form.Text = text;
+
+            return form;
+        }
         public static void PersonnePageStyle(Personnes personne, Form form)
         {
-            Image imageReduite = null;
+            System.Drawing.Image imageReduite = null;
             if (personne.genre == true)
             {
-                Image imageOriginale = Image.FromFile("img/ppmen.png");
+                System.Drawing.Image imageOriginale = System.Drawing.Image.FromFile("img/ppmen.png");
 
                 int nouvelleLargeur = 100;
                 int nouvelleHauteur = 100;
@@ -257,7 +278,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             }
             else
             {
-                Image imageOriginale = Image.FromFile("img/ppwomen.png");
+                System.Drawing.Image imageOriginale = System.Drawing.Image.FromFile("img/ppwomen.png");
 
                 int nouvelleLargeur = 100;
                 int nouvelleHauteur = 100;
@@ -286,7 +307,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             comboBox.Size = new System.Drawing.Size(160, 40);
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
-            comboBox.Font = new Font("Arial", 15, FontStyle.Bold);
+            comboBox.Font = new System.Drawing.Font("Arial", 15, FontStyle.Bold);
 
             string[] monthNames = new string[]
             {
@@ -310,7 +331,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
             List<int> yearList = new List<int>();
-            comboBox.Font = new Font("Arial", 15, FontStyle.Bold);
+            comboBox.Font = new System.Drawing.Font("Arial", 15, FontStyle.Bold);
 
             int startYear = 2023;
             int endYear = 2049;
@@ -332,7 +353,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
             List<int> yearList = new List<int>();
-            comboBox.Font = new Font("Arial", fontsize, FontStyle.Bold);
+            comboBox.Font = new System.Drawing.Font("Arial", fontsize, FontStyle.Bold);
 
             var Days = new List<int>();
 
@@ -342,6 +363,26 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             }
 
             comboBox.DataSource = Days;
+            return comboBox;
+        }
+        public static System.Windows.Forms.ComboBox ComboBoxChoiseYear(Size size, Point location, int fontsize, List<int> yearsUsed)
+        {
+            System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
+            comboBox.Location = location;
+            comboBox.Size = size;
+            comboBox.BackColor = Color.FromArgb(24, 30, 42);
+            comboBox.ForeColor = Color.FromArgb(166, 154, 121);
+            List<int> yearList = new List<int>();
+            comboBox.Font = new System.Drawing.Font("Arial", fontsize, FontStyle.Bold);
+
+            var Years = new List<int>();
+
+            foreach (int year in yearsUsed)
+            {
+                Years.Add(year);
+            }
+
+            comboBox.DataSource = Years;
             return comboBox;
         }
 
@@ -357,7 +398,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             label.ForeColor = Color.FromArgb(166, 154, 121);
             label.Size = new Size(200, 40);
             label.Text = contain;
-            label.Font = new Font("Arial", fontSize, FontStyle.Bold);
+            label.Font = new System.Drawing.Font("Arial", fontSize, FontStyle.Bold);
             label.Location = new Point(locationX, locationY);
             label.TextAlign = ContentAlignment.MiddleCenter;
             return label;
@@ -492,6 +533,64 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 .Sum(kv => kv.Value);
 
             return hourinMonth;
+        }
+        public static List<int> GetDistinctYears(Dictionary<DateTime, int> dictionary)
+        {
+            List<int> distinctYears = new List<int>();
+
+            foreach (DateTime date in dictionary.Keys)
+            {
+                int year = date.Year;
+
+                if (!distinctYears.Contains(year))
+                {
+                    distinctYears.Add(year);
+                }
+            }
+
+            return distinctYears;
+        }
+    }
+    class PDF
+    {
+        public static void CreatePDF(int year)
+        {
+            string downloadFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
+            string pdfFilePath = Path.Combine(downloadFolderPath, "Descriptif " + year + ".pdf");
+
+            Document document = new Document();
+
+            //Def Fonts
+            iTextSharp.text.Font titleFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 22, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+            iTextSharp.text.Font secondTitleFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+            iTextSharp.text.Font informationsFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.GRAY);
+            iTextSharp.text.Font explainFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.NORMAL, BaseColor.GRAY);
+            iTextSharp.text.Font endFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.ITALIC, BaseColor.BLACK);
+
+
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
+            document.Open();
+
+            Paragraph start = new Paragraph("PDF généré automatique par l'application TimeManagement créé par FIGUEIRAS Jossua en 2023", endFont);
+            start.Alignment = Element.ALIGN_RIGHT;
+            start.SpacingBefore = 0f;
+            start.SpacingAfter = 5f;
+            document.Add(start);
+
+            Paragraph title = new Paragraph("Récapitulatif de l'année " + year, titleFont);
+            title.Alignment = Element.ALIGN_CENTER;
+            title.SpacingAfter = 70f;
+            document.Add(title);
+
+            document.Close();
+
+            ProcessStartInfo startInfo = new ProcessStartInfo(pdfFilePath)
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            };
+            Process.Start(startInfo);
+
         }
     }
 }

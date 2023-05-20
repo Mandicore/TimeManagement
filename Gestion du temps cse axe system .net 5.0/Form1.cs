@@ -47,6 +47,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         private ComboBox boxMonth;
         private ComboBox boxDays;
         private ComboBox boxHour;
+        private ComboBox choiseYear;
         private ComboBox boxDuration;
         private List<string> monthWith30Days = new List<string>
         {
@@ -178,12 +179,44 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             infosPersonnes.Controls.Add(legendHourYear);
 
             Button summaryYear = Styles.CreateButtonAdd(foreground, background, "Récapitulatif", new Size(110, 55));
-            summaryYear.Click += new EventHandler(addEvent_Click);
+            summaryYear.Click += new EventHandler(summaryYear_Click);
             summaryYear.Location = new Point(750, 500);
             infosPersonnes.Controls.Add(summaryYear);
 
             //Show Form
             infosPersonnes.Show();
+        }
+        private void summaryYear_Click(object sender, EventArgs e)
+        {
+            Form yearSelection = Styles.NewLittleForm(background, foreground, "Choisissez une année !");
+
+            List<int> allyears = TimeManagement.GetDistinctYears(personneSelect.eventsDictionary);
+
+            choiseYear = Styles.ComboBoxChoiseYear(new Size(150, 40), new Point(200, 94), 16, allyears);
+            yearSelection.Controls.Add(choiseYear);
+
+            Label HelpForUser = Styles.panelTitle(foreground, background, "Année du récapitulatif :", 16, new Point(5, 65), new Size(180, 60));
+            yearSelection.Controls.Add(HelpForUser);
+
+            Button yearSelect = Styles.CreateButtonAdd(foreground, background, "Créer PDF !", new Size(120, 40));
+            yearSelect.Click += new EventHandler(CreatePDF_Click);
+            yearSelect.Location = new Point(130, 170);
+            yearSelection.Controls.Add(yearSelect);
+
+            yearSelection.Show();
+        }
+        private void CreatePDF_Click(object sender, EventArgs e)
+        {
+            int year = int.Parse(choiseYear.SelectedItem.ToString());
+
+
+
+            Form loadingForm = Styles.NewLoadingForm(foreground, background, "Création de votre PDF ...");
+            Label HelpForUser = Styles.panelTitle(background, foreground, "Création de votre PDF ...", 20, new Point(15, 30), new Size(300, 100));
+            loadingForm.Controls.Add(HelpForUser);
+            loadingForm.Show();
+            PDF.CreatePDF(year);
+            loadingForm.Hide();
         }
         private void addEvent_Click(object sender, EventArgs e)
         {
