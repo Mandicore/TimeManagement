@@ -279,11 +279,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public static System.Windows.Forms.ComboBox ComboBoxMonth()
         {
             System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
-            comboBox.Location = new System.Drawing.Point(300, 330);
+            comboBox.Location = new System.Drawing.Point(190, 100);
             comboBox.Size = new System.Drawing.Size(160, 40);
             comboBox.BackColor = Color.FromArgb(24, 30, 42);
             comboBox.ForeColor = Color.FromArgb(166, 154, 121);
-            comboBox.Font = new Font("Arial", 17, FontStyle.Bold);
+            comboBox.Font = new Font("Arial", 15, FontStyle.Bold);
 
             string[] monthNames = new string[]
             {

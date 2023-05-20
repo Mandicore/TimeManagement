@@ -9,32 +9,37 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
     public partial class Form1 : Form
     {
-        int interval = 150;
-
-        private MonthCalendar calendarDefault;
-
+        //App settings 
         private Color background = Color.FromArgb(24, 30, 42);
         private Color foreground = Color.FromArgb(166, 154, 121);
 
-        private bool panelOpen = false;
-        private Panel panel = new Panel();
-        private Button burgerButton = new Button();
-
-        private Form signIn;
-
-        public TextBox name = new TextBox();
-        public TextBox firstName = new TextBox();
-
+        //New personnes
         public System.Windows.Forms.RadioButton radioButton1 = new System.Windows.Forms.RadioButton();
         public System.Windows.Forms.RadioButton radioButton2 = new System.Windows.Forms.RadioButton();
 
-        public List<Personnes> personnes = GetListPersonnes.GetListPersonneFromJson();
-
+        // Personnes elements
         private Personnes personneSelect;
+        public List<Personnes> personnes = GetListPersonnes.GetListPersonneFromJson();
+        public TextBox name = new TextBox();
+        public TextBox firstName = new TextBox();
+
+        // Panels elements
+        private bool panelOpen = false;
+        private Panel panel = new Panel();
+        private Button burgerButton = new Button();
+        int interval = 150;
+
+        // all forms
+        private Form years;
+        private Form signIn;
         private Form infosPersonnes;
 
+        // Create new event
+        private int yearByUser;
+        private string monthByUser;
         private ComboBox boxYear;
-        private int Year;
+        private ComboBox boxMonth;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,9 +64,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             burgerButton.Click += new EventHandler(burgerButton_Click);
             this.Controls.Add(burgerButton);
 
-            //calendar default settings
-            calendarDefault = new MonthCalendar();
-            Calendar.CreateDefaultCalendar(calendarDefault);
 
 
         }
@@ -138,7 +140,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         }
         private void addEvent_Click(object sender, EventArgs e)
         {
-            Form years = Styles.NewLittleForm(background, foreground, "Choisissez une année !");
+            years = Styles.NewLittleForm(background, foreground, "Choisissez une année !");
 
             //Create ComboBox
             boxYear = Styles.ComboBoxYears();
@@ -170,13 +172,38 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             try
             {
-                Year = int.Parse(boxYear.SelectedItem.ToString());
-                MessageBox.Show("Année : " + Year);
+                yearByUser = int.Parse(boxYear.SelectedItem.ToString());
+
+                Form month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+
+                boxMonth = Styles.ComboBoxMonth();
+                month.Controls.Add(boxMonth);
+
+                //Create Label
+                Label ActionForUser = Styles.panelTitle(foreground, background, "Mois : ", 16, new Point(60, 94), new Size(150, 40));
+                month.Controls.Add(ActionForUser);
+
+                //Create Button
+                Button SendYear = Styles.CreateButtonAdd(foreground, background, "Valider !");
+                SendYear.Click += new EventHandler(SendMonth_Click);
+                SendYear.Location = new Point(130, 170);
+                month.Controls.Add(SendYear);
+
+                month.Show();
+                years.Hide();
             }
             catch
             {
-
+                MessageBox.Show("Erreur : ");
             }
+        }
+        private void SendMonth_Click(object sender, EventArgs e)
+        {
+            monthByUser = boxMonth.SelectedItem.ToString();
+
+            Form days = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
+
+
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
