@@ -172,6 +172,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             //Create ComboBox
             boxYear = Styles.ComboBoxYears();
+            boxYear.KeyPress += box_keyPress;
             years.Controls.Add(boxYear);
 
             //Create Label
@@ -198,7 +199,9 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 month = Styles.NewLittleForm(background, foreground, "Choisissez un mois !");
 
                 boxMonth = Styles.ComboBoxMonth();
+                boxMonth.KeyPress += box_keyPress;
                 month.Controls.Add(boxMonth);
+
 
                 //Create Label
                 Label ActionForUser = Styles.panelTitle(foreground, background, "Mois : ", 16, new Point(60, 94), new Size(150, 40));
@@ -238,7 +241,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             {
                 boxDays = Styles.ComboBoxDays(32, new Size(100, 40), new Point(190, 100), 15);
             }
-
+            boxDays.KeyPress += box_keyPress;
             days.Controls.Add(boxDays);
 
 
@@ -266,6 +269,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 hour = Styles.NewLittleForm(background, foreground, "Choisissez une heure de début !");
 
                 boxHour = Styles.ComboBoxDays(24, new Size(70, 40), new Point (165, 50), 12);
+                boxHour.KeyPress += box_keyPress;
                 hour.Controls.Add(boxHour);
 
                 //Create Label
@@ -278,6 +282,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
                 //seconde question
 
                 boxDuration = Styles.ComboBoxDays(24, new Size(70, 40), new Point(165, 100), 12);
+                boxDuration.KeyPress += box_keyPress;
                 hour.Controls.Add(boxDuration);
 
 
@@ -313,26 +318,36 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             DateTime dateTime = DateTime.ParseExact(dateString, "MMMM d, yyyy H:mm:ss", new CultureInfo("fr-FR"));
 
             personneSelect.eventsDictionary ??= new Dictionary<DateTime, int>();
-            personneSelect.eventsDictionary.Add(dateTime, DurationByUser);
 
-            int index = personnes.FindIndex(p => p.id == personneSelect.id);
-
-            if (index != -1)
+            if (personneSelect.eventsDictionary.ContainsKey(dateTime))
             {
-                // Remplacement de l'objet dans la liste
-                personnes[index] = personneSelect;
-                ImportJsonFromFile.Send(personnes);
-                MessageBox.Show("Nouvel event créer");
-                hour.Hide();
+                MessageBox.Show("ERREUR : Un début d'évènement est déjà prévue pour cette date de début ! \nRéessayez avec une nouvelle date de début d'évènement ...");
             }
             else
             {
-                MessageBox.Show("Erreur");
-                hour.Hide();
+                personneSelect.eventsDictionary.Add(dateTime, DurationByUser);
+
+                int index = personnes.FindIndex(p => p.id == personneSelect.id);
+
+                if (index != -1)
+                {
+                    // Remplacement de l'objet dans la liste
+                    personnes[index] = personneSelect;
+                    ImportJsonFromFile.Send(personnes);
+                    MessageBox.Show("Nouvel event créer");
+                    hour.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Erreur");
+                    hour.Hide();
+                }
             }
-
-
-
+            
+        }
+        private void box_keyPress(object sender, KeyPressEventArgs e) 
+        {
+            e.Handled = true;
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {

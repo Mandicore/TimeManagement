@@ -281,7 +281,6 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
 
 
-
             comboBox.DataSource = monthNames;
 
             return comboBox;
