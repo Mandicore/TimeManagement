@@ -202,14 +202,14 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             return signIn;
 
         }
-        public static Label LabelHour(string text, Point location, Size size, Color foreground, Color background)
+        public static Label LabelHour(string text,string font,int fontSize, Point location, Size size, Color foreground, Color background)
         {
             Label label = new Label();
             label.Text = text;
             label.Size = size;
             label.BackColor = background;
             label.ForeColor = foreground;
-            label.Font = new Font("Verdana", 45, FontStyle.Italic);
+            label.Font = new Font(font, fontSize, FontStyle.Italic);
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Location = location;
             label.Anchor = AnchorStyles.None;

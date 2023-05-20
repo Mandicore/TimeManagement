@@ -165,11 +165,17 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             int hourOnThisMonth = TimeManagement.hourOnThisMonth(personneSelect);
             int hourOnThisYear = TimeManagement.hourOnThisYear(personneSelect);
 
-            Label printHourOnThisMonth = Styles.LabelHour(hourOnThisMonth + "", new Point(100, 450), new Size(150, 100), foreground, background);
+            Label printHourOnThisMonth = Styles.LabelHour(hourOnThisMonth + "","Verdana", 45, new Point(100, 450), new Size(150, 100), foreground, background);
             infosPersonnes.Controls.Add(printHourOnThisMonth);
 
-            Label printHourOnThisYear = Styles.LabelHour(hourOnThisYear + "", new Point(400, 450), new Size(150, 100), foreground, background);
+            Label printHourOnThisYear = Styles.LabelHour(hourOnThisYear + "", "Verdana", 45, new Point(400, 450), new Size(150, 100), foreground, background);
             infosPersonnes.Controls.Add(printHourOnThisYear);
+
+            Label legendHourMonth = Styles.LabelHour("Nombre d'heures \nle mois dernier", "Arial", 13, new Point(60, 475), new Size(220, 200), foreground, background);
+            infosPersonnes.Controls.Add(legendHourMonth);
+
+            Label legendHourYear = Styles.LabelHour("Nombre d'heures \nsur cette année", "Arial", 13, new Point(360, 475), new Size(220, 200), foreground, background);
+            infosPersonnes.Controls.Add(legendHourYear);
 
             //Show Form
             infosPersonnes.Show();
