@@ -202,6 +202,20 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             return signIn;
 
         }
+        public static Label LabelHour(string text, Point location, Size size, Color foreground, Color background)
+        {
+            Label label = new Label();
+            label.Text = text;
+            label.Size = size;
+            label.BackColor = background;
+            label.ForeColor = foreground;
+            label.Font = new Font("Verdana", 45, FontStyle.Italic);
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Location = location;
+            label.Anchor = AnchorStyles.None;
+            return label;
+
+        }
         public static void ItemsAddUser(Form signIn, System.Windows.Forms.TextBox name, System.Windows.Forms.TextBox firstName, System.Windows.Forms.RadioButton radioButton1, System.Windows.Forms.RadioButton radioButton2, System.Windows.Forms.GroupBox groupBox = null)
         {
             Image imageOriginale = Image.FromFile("img/add.png");

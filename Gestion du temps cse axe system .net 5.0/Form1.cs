@@ -165,7 +165,11 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             int hourOnThisMonth = TimeManagement.hourOnThisMonth(personneSelect);
             int hourOnThisYear = TimeManagement.hourOnThisYear(personneSelect);
 
-            MessageBox.Show("nb heure " + hourOnThisMonth);
+            Label printHourOnThisMonth = Styles.LabelHour(hourOnThisMonth + "", new Point(100, 450), new Size(150, 100), foreground, background);
+            infosPersonnes.Controls.Add(printHourOnThisMonth);
+
+            Label printHourOnThisYear = Styles.LabelHour(hourOnThisYear + "", new Point(400, 450), new Size(150, 100), foreground, background);
+            infosPersonnes.Controls.Add(printHourOnThisYear);
 
             //Show Form
             infosPersonnes.Show();
