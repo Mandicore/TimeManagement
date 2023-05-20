@@ -209,13 +209,15 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         {
             int year = int.Parse(choiseYear.SelectedItem.ToString());
 
+            var allEventInYear = TimeManagement.FilterDictionaryByYear(personneSelect.eventsDictionary, year);
+
 
 
             Form loadingForm = Styles.NewLoadingForm(foreground, background, "Création de votre PDF ...");
             Label HelpForUser = Styles.panelTitle(background, foreground, "Création de votre PDF ...", 20, new Point(15, 30), new Size(300, 100));
             loadingForm.Controls.Add(HelpForUser);
             loadingForm.Show();
-            PDF.CreatePDF(year);
+            PDF.CreatePDF(year, allEventInYear);
             loadingForm.Hide();
         }
         private void addEvent_Click(object sender, EventArgs e)

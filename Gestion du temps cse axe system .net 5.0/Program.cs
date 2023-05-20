@@ -15,6 +15,7 @@ using projet_gestion_temps_cse_axe_system;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Document = iTextSharp.text.Document;
+using Newtonsoft.Json.Linq;
 
 namespace Gestion_du_temps_cse_axe_system_.net_5._0
 {
@@ -550,10 +551,24 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
 
             return distinctYears;
         }
+        public static Dictionary<DateTime, int> FilterDictionaryByYear(Dictionary<DateTime, int> dictionary, int year)
+        {
+            Dictionary<DateTime, int> filteredDictionary = new Dictionary<DateTime, int>();
+
+            foreach (var kvp in dictionary)
+            {
+                if (kvp.Key.Year == year)
+                {
+                    filteredDictionary.Add(kvp.Key, kvp.Value);
+                }
+            }
+
+            return filteredDictionary;
+        }
     }
     class PDF
     {
-        public static void CreatePDF(int year)
+        public static void CreatePDF(int year, Dictionary<DateTime, int> dictionary)
         {
             string downloadFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             string pdfFilePath = Path.Combine(downloadFolderPath, "Descriptif " + year + ".pdf");
@@ -581,6 +596,14 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             title.Alignment = Element.ALIGN_CENTER;
             title.SpacingAfter = 70f;
             document.Add(title);
+
+            foreach (KeyValuePair<DateTime, int> kvp in dictionary)
+            {
+                Paragraph infos = new Paragraph("Début : " + kvp.Key.ToString("dddd d MMMM yyyy") + " Fin : " + kvp.Key.AddHours(kvp.Value).ToString("dddd d MMMM yyyy") + "\nTotal heure : " + kvp.Value, informationsFont);
+                infos.SpacingAfter = 5f;
+                document.Add(infos);
+            }
+
 
             document.Close();
 
