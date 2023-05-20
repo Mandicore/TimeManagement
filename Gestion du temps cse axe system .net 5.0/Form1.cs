@@ -22,6 +22,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
         public List<Personnes> personnes = GetListPersonnes.GetListPersonneFromJson();
         public TextBox name = new TextBox();
         public TextBox firstName = new TextBox();
+        public int hourOnThisYear;
 
         // Panels elements
         private bool panelOpen = false;
@@ -83,6 +84,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             this.BackColor = background;
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size;
             this.MinimumSize = Screen.PrimaryScreen.WorkingArea.Size;
+            this.Text = "TimeManagement";
 
             //Home Text (date)
             Label HomeText = Styles.HomeText(background, foreground, Width, 100, this);
@@ -164,7 +166,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             infosPersonnes.Controls.Add(newEvent);
 
             int hourOnThisMonth = TimeManagement.hourOnThisMonth(personneSelect);
-            int hourOnThisYear = TimeManagement.hourOnThisYear(personneSelect);
+            hourOnThisYear = TimeManagement.hourOnThisYear(personneSelect);
 
             Label printHourOnThisMonth = Styles.LabelHour(hourOnThisMonth + "","Verdana", 45, new Point(100, 450), new Size(150, 100), foreground, background);
             infosPersonnes.Controls.Add(printHourOnThisMonth);
@@ -217,7 +219,7 @@ namespace Gestion_du_temps_cse_axe_system_.net_5._0
             Label HelpForUser = Styles.panelTitle(background, foreground, "Création de votre PDF ...", 20, new Point(15, 30), new Size(300, 100));
             loadingForm.Controls.Add(HelpForUser);
             loadingForm.Show();
-            PDF.CreatePDF(year, allEventInYear);
+            PDF.CreatePDF(year, allEventInYear, hourOnThisYear, personneSelect.name + " " + personneSelect.firstName);
             loadingForm.Hide();
         }
         private void addEvent_Click(object sender, EventArgs e)
