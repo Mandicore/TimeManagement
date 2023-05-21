@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GEO9QKRyPUVMJsgVjz1FnBlnjV8FOSNwwL8iKqh0LBQcA7lMWeMqU/iHMAJQz0u9eyi5iuH5hHLqiwABNLQT7w==",
+  "dgSpecHash": "R62+0PrmHpnbNoIL9JEd16u5JpQ5iCb1WVizpj8K2rpP6Qs9D7ULarM2jh5vbJ3+Je3u3c198iBFISnRNYJpMg==",
   "success": true,
-  "projectFilePath": "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\gestiondutemps.csproj",
+  "projectFilePath": "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\gestiondutemps.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jossu\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\jossu\\.nuget\\packages\\itextsharp\\5.5.13.3\\itextsharp.5.5.13.3.nupkg.sha512",

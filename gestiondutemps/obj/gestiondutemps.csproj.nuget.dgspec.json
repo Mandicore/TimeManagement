@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\gestiondutemps.csproj": {}
+    "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\gestiondutemps.csproj": {}
   },
   "projects": {
-    "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\gestiondutemps.csproj": {
+    "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\gestiondutemps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\gestiondutemps.csproj",
+        "projectUniqueName": "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\gestiondutemps.csproj",
         "projectName": "gestiondutemps",
-        "projectPath": "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\gestiondutemps.csproj",
+        "projectPath": "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\gestiondutemps.csproj",
         "packagesPath": "C:\\Users\\jossu\\.nuget\\packages\\",
-        "outputPath": "D:\\partage Jossua\\partage\\code\\c# project\\gestiondutemps\\gestiondutemps\\obj\\",
+        "outputPath": "D:\\partage Jossua\\partage\\code\\c# project\\gestion-du-temps\\gestiondutemps\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
